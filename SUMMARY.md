@@ -23,4 +23,7 @@
     * [属性和特性](meta/AttributesAndCharacteristics.md)
     * [属性描述符](meta/AttributeDescriptor.md)
     * [类元编程](meta/Metaprogramming.md)
+* [三方模块](module/README.md)
+    * [Requests](module/Requests.md)
+    * [Pillow](module/Pillow.md)
 
