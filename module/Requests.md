@@ -659,30 +659,34 @@ with requests.get('http://httpbin.org/get', stream=True) as r:
 
 ### 流式上传
 Requests支持流式上传，这允许发送大的数据流或文件而无需先把它们读入内存。要使用流式上传，仅需为的请求体提供一个类文件对象即可：
-
+```python
 with open('massive-body') as f:
     requests.post('http://some.url/streamed', data=f)
-警告
-警告
+```
 
-强烈建议用二进制模式（[binary mode](https://docs.python.org/2/tutorial/inputoutput.html#reading-and-writing-files)）打开文件。这是因为 requests 可能会为提供 header 中的 Content-Length，在这种情况下该值会被设为文件的字节数。如果用文本模式打开文件，就可能碰到错误。
+**警告**  
+强烈建议用二进制模式（[binary mode](https://docs.python.org/2/tutorial/inputoutput.html#reading-and-writing-files)）打开文件。因为 requests 可能会为提供 header 中的 Content-Length，在这种情况下该值会被设为文件的字节数。如果用文本模式打开文件，就可能碰到错误。
 
 ### 块编码请求
-对于出去和进来的请求，Requests 也支持分块传输编码。要发送一个块编码的请求，仅需为的请求体提供一个生成器（或任意没有具体长度的迭代器）：
-
+对于出去和进来的请求，Requests也支持分块传输编码。要发送一个块编码的请求，仅需为的请求体提供一个生成器（或任意没有具体长度的迭代器）：
+```Python
 def gen():
     yield 'hi'
     yield 'there'
 
 requests.post('http://some.url/chunked', data=gen())
-对于分块的编码请求，最好使用 Response.iter_content() 对其数据进行迭代。在理想情况下，的 request 会设置 stream=True，这样就可以通过调用 iter_content 并将分块大小参数设为 None，从而进行分块的迭代。如果要设置分块的最大体积，可以把分块大小参数设为任意整数。
+```
+
+对于分块的编码请求，最好使用`Response.iter_content()`对其数据进行迭代。在理想情况下，request会设置`stream=True`，这样就可以通过调用`iter_content`并将分块大小参数设为`None`，从而进行分块的迭代。如果要设置分块的最大体积，可以把分块大小参数设为任意整数。
 
 ### POST 多个分块编码的文件
-可以在一个请求中发送多个文件。例如，假设要上传多个图像文件到一个 HTML 表单，使用一个多文件 field 叫做 "images":
-
+可以在一个请求中发送多个文件。例如，假设要上传多个图像文件到一个HTML表单，使用一个多文件field 叫做 "images":
+```html
 <input type="file" name="images" multiple="true" required="true"/>
-要实现，只要把文件设到一个元组的列表中，其中元组结构为 (form_field_name, file_info):
+```
 
+要实现，只要把文件设到一个元组的列表中，其中元组结构为`(form_field_name, file_info)`:
+```python
 >>> url = 'http://httpbin.org/post'
 >>> multiple_files = [
         ('images', ('foo.png', open('foo.png', 'rb'), 'image/png')),
@@ -695,44 +699,46 @@ requests.post('http://some.url/chunked', data=gen())
   'Content-Type': 'multipart/form-data; boundary=3131623adb2043caaeb5538cc7aa0b3a',
   ...
 }
-警告
-警告
+```
 
+**警告**  
 强烈建议用二进制模式（[binary mode](https://docs.python.org/2/tutorial/inputoutput.html#reading-and-writing-files)）打开文件。这是因为 requests 可能会为提供 header 中的 Content-Length，在这种情况下该值会被设为文件的字节数。如果用文本模式打开文件，就可能碰到错误。
 
 ### 事件挂钩
 Requests有一个钩子系统，可以用来操控部分请求过程，或信号事件处理。
 
 可用的钩子:
+`response`: 从一个请求产生的响应
 
-response:
-从一个请求产生的响应
-可以通过传递一个 {hook_name: callback_function} 字典给 hooks 请求参数为每个请求分配一个钩子函数：
-
+可以通过传递一个`{hook_name: callback_function}`字典给`hooks`请求参数为每个请求分配一个钩子函数：
+```python
 hooks=dict(response=print_url)
-callback_function 会接受一个数据块作为它的第一个参数。
-
+```
+`callback_function`会接受一个数据块作为它的第一个参数。
+```python
 def print_url(r, *args, **kwargs):
     print(r.url)
+```
 若执行的回调函数期间发生错误，系统会给出一个警告。
 
 若回调函数返回一个值，默认以该值替换传进来的数据。若函数未返回任何东西，也没有什么其他的影响。
 
-来在运行期间打印一些请求方法的参数：
-
+例, 在运行期间打印一些请求方法的参数：
+```python
 >>> requests.get('http://httpbin.org', hooks=dict(response=print_url))
 http://httpbin.org
 <Response [200]>
+```
 
 ### 自定义身份验证
 Requests 允许使用自己指定的身份验证机制。
 
-任何传递给请求方法的 auth 参数的可调用对象，在请求发出之前都有机会修改请求。
+任何传递给请求方法的`auth`参数的可调用对象，在请求发出之前都有机会修改请求。
 
-自定义的身份验证机制是作为 requests.auth.AuthBase 的子类来实现的，也非常容易定义。Requests 在 requests.auth 中提供了两种常见的的身份验证方案： HTTPBasicAuth 和 HTTPDigestAuth 。
+自定义的身份验证机制是作为`requests.auth.AuthBase`的子类来实现的，也非常容易定义。Requests在`requests.auth`中提供了两种常见的的身份验证方案：`HTTPBasicAuth`和`HTTPDigestAuth`。
 
-假设有一个web服务，仅在 X-Pizza 头被设置为一个密码值的情况下才会有响应。虽然这不太可能，但就以它为例好了。
-
+假设有一个web服务，仅在`X-Pizza`头被设置为一个密码值的情况下才会有响应。虽然这不太可能，但就以它为例好了。
+```python
 from requests.auth import AuthBase
 
 class PizzaAuth(AuthBase):
@@ -745,14 +751,17 @@ class PizzaAuth(AuthBase):
         # modify and return the request
         r.headers['X-Pizza'] = self.username
         return r
-然后就可以使用的PizzaAuth来进行网络请求:
+```
 
+然后就可以使用PizzaAuth来进行网络请求:
+```python
 >>> requests.get('http://pizzabin.org/admin', auth=PizzaAuth('kenneth'))
 <Response [200]>
+```
 
 ### 流式请求
-使用 [`Response.iter_lines()`](http://cn.python-requests.org/zh_CN/latest/api.html#requests.Response.iter_lines) 可以很方便地对流式 API （例如 [Twitter 的流式 API](https://dev.twittercom/docs/streaming-api)） 进行迭代。简单地设置 stream 为 True 便可以使用 [iter_lines](http://cn.python-requests.org/zh_CN/latest/api.html#requests.Response.iter_lines) 对相应进行迭代：
-
+使用[`Response.iter_lines()`](http://cn.python-requests.org/zh_CN/latest/api.html#requests.Response.iter_lines) 可以很方便地对流式API（例如 [Twitter 的流式 API](https://dev.twittercom/docs/streaming-api)）进行迭代。简单地设置`stream`为`True`便可以使用[iter_lines](http://cn.python-requests.org/zh_CN/latest/api.html#requests.Response.iter_lines)对相应进行迭代：
+```python
 import json
 import requests
 
@@ -764,8 +773,10 @@ for line in r.iter_lines():
     if line:
         decoded_line = line.decode('utf-8')
         print(json.loads(decoded_line))
-当使用 decode_unicode=True 在 [`Response.iter_lines()`](http://cn.python-requests.org/zh_CN/latest/api.html#requests.Response.iter_lines) 或 [`Response.iter_content()`](http://cn.python-requests.org/zh_CN/latest/api.html#requests.Response.iter_content)中时，需要提供一个回退编码方式，以防服务器没有提供默认回退编码，从而导致错误：
+```
 
+当使用*decode_unicode=True*在[`Response.iter_lines()`](http://cn.python-requests.org/zh_CN/latest/api.html#requests.Response.iter_lines) 或 [`Response.iter_content()`](http://cn.python-requests.org/zh_CN/latest/api.html#requests.Response.iter_content)中时，需要提供一个回退编码方式，以防服务器没有提供默认回退编码，从而导致错误：
+```python
 r = requests.get('http://httpbin.org/stream/20', stream=True)
 
 if r.encoding is None:
@@ -774,11 +785,11 @@ if r.encoding is None:
 for line in r.iter_lines(decode_unicode=True):
     if line:
         print(json.loads(line))
-警告
-警告
+```
 
+**警告**
 [iter_lines](http://cn.python-requests.org/zh_CN/latest/api.html#requests.Response.iter_lines) 不保证重进入时的安全性。多次调用该方法 会导致部分收到的数据丢失。如果要在多处调用它，就应该使用生成的迭代器对象:
-
+```python
 lines = r.iter_lines()
 # 保存第一行以供后面使用，或者直接跳过
 
@@ -786,10 +797,11 @@ first_line = next(lines)
 
 for line in lines:
     print(line)
+```
 
 ### 代理
-如果需要使用代理，可以通过为任意请求方法提供 proxies 参数来配置单个请求:
-
+如果需要使用代理，可以通过为任意请求方法提供`proxies`参数来配置单个请求:
+```python
 import requests
 
 proxies = {
@@ -798,46 +810,57 @@ proxies = {
 }
 
 requests.get("http://example.org", proxies=proxies)
-也可以通过环境变量 HTTP_PROXY 和 HTTPS_PROXY 来配置代理。
+```
 
+也可以通过环境变量 HTTP_PROXY 和 HTTPS_PROXY 来配置代理。
+```Python
 $ export HTTP_PROXY="http://10.10.1.10:3128"
 $ export HTTPS_PROXY="http://10.10.1.10:1080"
 
 $ python
 >>> import requests
 >>> requests.get("http://example.org")
-若的代理需要使用HTTP Basic Auth，可以使用 http://user:password@host/ 语法：
+```
 
+若的代理需要使用HTTP Basic Auth，可以使用*http://user:password@host/*语法：
+```python
 proxies = {
     "http": "http://user:pass@10.10.1.10:3128/",
 }
-要为某个特定的连接方式或者主机设置代理，使用 scheme://hostname 作为 key， 它会针对指定的主机和连接方式进行匹配。
+```
 
+要为某个特定的连接方式或者主机设置代理，使用*scheme://hostname*作为key，它会针对指定的主机和连接方式进行匹配。
+```python
 proxies = {'http://10.20.1.128': 'http://10.10.1.10:5323'}
+```
+
 注意，代理 URL 必须包含连接方式。
 
-### SOCKS
+#### SOCKS
 2.10.0 新版功能.
 
-除了基本的 HTTP 代理，Request 还支持 SOCKS 协议的代理。这是一个可选功能，若要使用， 需要安装第三方库。
+除了基本的HTTP代理，Request还支持SOCKS协议的代理。这是一个可选功能，若要使用，需要安装第三方库。
 
-可以用 pip 获取依赖:
-
+可以用pip获取依赖:
+```bash
 $ pip install requests[socks]
-安装好依赖以后，使用 SOCKS 代理和使用 HTTP 代理一样简单：
+```
 
+安装好依赖以后，使用SOCKS代理和使用HTTP代理一样简单：
+```python
 proxies = {
     'http': 'socks5://user:pass@host:port',
     'https': 'socks5://user:pass@host:port'
 }
+```
 
 ### 合规性
-Requests 符合所有相关的规范和 RFC，这样不会为用户造成不必要的困难。但这种对规范的考虑导致一些行为对于不熟悉相关规范的人来说看似有点奇怪。
+Requests符合所有相关的规范和RFC，这样不会为用户造成不必要的困难。但这种对规范的考虑导致一些行为对于不熟悉相关规范的人来说看似有点奇怪。
 
-### 编码方式
-当收到一个响应时，Requests 会猜测响应的编码方式，用于在调用 [Response.text](http://cn.python-requests.org/zh_CN/latest/api.html#requests.Response.text) 方法时对响应进行解码。Requests 首先在 HTTP 头部检测是否存在指定的编码方式，如果不存在，则会使用 [charade](http://pypi.python.org/pypi/charade) 来尝试猜测编码方式。
+#### 编码方式
+当收到一个响应时，Requests会猜测响应的编码方式，用于在调用[Response.text](http://cn.python-requests.org/zh_CN/latest/api.html#requests.Response.text)方法时对响应进行解码。Requests首先在HTTP头部检测是否存在指定的编码方式，如果不存在，则会使用[charade](http://pypi.python.org/pypi/charade)来尝试猜测编码方式。
 
-只有当 HTTP 头部不存在明确指定的字符集，并且 Content-Type 头部字段包含 text 值之时， Requests 才不去猜测编码方式。在这种情况下， [RFC 2616](http://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html#sec3.7.1) 指定默认字符集必须是 ISO-8859-1 。Requests 遵从这一规范。如果需要一种不同的编码方式，可以手动设置 [Response.encoding](http://cn.python-requests.org/zh_CN/latest/api.html#requests.Response.encoding) 属性，或使用原始的 [Response.content](http://cn.python-requests.org/zh_CN/latest/api.html#requests.Response.content)。
+只有当HTTP头部不存在明确指定的字符集，并且`Content-Type`头部字段包含`text`值之时，Requests才不去猜测编码方式。在这种情况下，[RFC 2616](http://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html#sec3.7.1) 指定默认字符集必须是`ISO-8859-1`。Requests遵从这一规范。如果需要一种不同的编码方式，可以手动设置[Response.encoding](http://cn.python-requests.org/zh_CN/latest/api.html#requests.Response.encoding)属性，或使用原始的[Response.content](http://cn.python-requests.org/zh_CN/latest/api.html#requests.Response.content)。
 
 ### HTTP动词
 Requests 提供了几乎所有HTTP动词的功能：GET、OPTIONS、HEAD、POST、PUT、PATCH、DELETE。以下内容为使用 Requests 中的这些动词以及 Github API 提供了详细示例。
