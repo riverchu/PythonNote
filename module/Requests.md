@@ -863,20 +863,24 @@ Requests符合所有相关的规范和RFC，这样不会为用户造成不必要
 只有当HTTP头部不存在明确指定的字符集，并且`Content-Type`头部字段包含`text`值之时，Requests才不去猜测编码方式。在这种情况下，[RFC 2616](http://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html#sec3.7.1) 指定默认字符集必须是`ISO-8859-1`。Requests遵从这一规范。如果需要一种不同的编码方式，可以手动设置[Response.encoding](http://cn.python-requests.org/zh_CN/latest/api.html#requests.Response.encoding)属性，或使用原始的[Response.content](http://cn.python-requests.org/zh_CN/latest/api.html#requests.Response.content)。
 
 ### HTTP动词
-Requests 提供了几乎所有HTTP动词的功能：GET、OPTIONS、HEAD、POST、PUT、PATCH、DELETE。以下内容为使用 Requests 中的这些动词以及 Github API 提供了详细示例。
+Requests提供了几乎所有HTTP动词的功能：GET、OPTIONS、HEAD、POST、PUT、PATCH、DELETE。以下内容为使用Requests中的这些动词以及Github API提供了详细示例。
 
-将从最常使用的动词 GET 开始。HTTP GET 是一个幂等方法，从给定的 URL 返回一个资源。因而，当试图从一个 web 位置获取数据之时，应该使用这个动词。一个使用示例是尝试从 Github 上获取关于一个特定 commit 的信息。假设想获取 Requests 的 commit a050faf 的信息。可以这样去做：
-
+将从最常使用的动词GET开始。HTTP GET是一个幂等方法，从给定的URL返回一个资源。因而，当试图从一个web位置获取数据之时，应该使用这个动词。一个使用示例是尝试从Github上获取关于一个特定commit的信息。假设想获取Requests的commit a050faf的信息。可以这样去做：
+```python
 >>> import requests
 >>> r = requests.get('https://api.github.com/repos/requests/requests/git/commits/a050faf084662f3a352dd1a941f2c7c9f886d4ad')
-应该确认 GitHub 是否正确响应。如果正确响应，想弄清响应内容是什么类型的。像这样去做：
+```
 
+应该确认GitHub是否正确响应。如果正确响应，想弄清响应内容是什么类型的。
+```python
 >>> if (r.status_code == requests.codes.ok):
 ...     print r.headers['content-type']
 ...
 application/json; charset=utf-8
-可见，GitHub 返回了 JSON 数据，非常好，这样就可以使用 r.json 方法把这个返回的数据解析成 Python 对象。
+```
 
+可见，GitHub返回了JSON数据，非常好，这样就可以使用r.json方法把这个返回的数据解析成Python对象。
+```python
 >>> commit_data = r.json()
 
 >>> print commit_data.keys()
@@ -886,21 +890,27 @@ application/json; charset=utf-8
 {u'date': u'2012-05-10T11:10:50-07:00', u'email': u'me@kennethreitz.com', u'name': u'Kenneth Reitz'}
 
 >>> print commit_data[u'message']
-makin' history
-到目前为止，一切都非常简单。嗯，来研究一下 GitHub 的 API。可以去看看文档，但如果使用 Requests 来研究也许会更有意思一点。可以借助 Requests 的 OPTIONS 动词来看看刚使用过的 url 支持哪些 HTTP 方法。
+makin history
+```
 
+研究一下GitHub的API文档. 可以借助 Requests 的 OPTIONS 动词来查看刚使用过的 url 支持哪些 HTTP 方法。
+```python
 >>> verbs = requests.options(r.url)
 >>> verbs.status_code
 500
-额，这是怎么回事？毫无帮助嘛！原来 GitHub，与许多 API 提供方一样，实际上并未实现 OPTIONS 方法。这是一个恼人的疏忽，但没关系，那可以使用枯燥的文档。然而，如果 GitHub 正确实现了 OPTIONS，那么服务器应该在响应头中返回允许用户使用的 HTTP 方法，例如：
+```
 
+GitHub与许多 API 提供方一样，实际上并未实现 OPTIONS 方法。这是一个恼人的疏忽，但没关系，可以使用枯燥的文档。然而，如果 GitHub 正确实现了 OPTIONS，那么服务器应该在响应头中返回允许用户使用的 HTTP 方法，例如：
+```python
 >>> verbs = requests.options('http://a-good-website.com/api/cats')
 >>> print verbs.headers['allow']
 GET,HEAD,POST,OPTIONS
+```
+
 转而去查看文档，看到对于提交信息，另一个允许的方法是 POST，它会创建一个新的提交。由于正在使用 Requests 代码库，应尽可能避免对它发送笨拙的 POST。作为替代，来玩玩 GitHub 的 Issue 特性。
 
-本篇文档是回应 [Issue #482](https://github.com/requests/requests/issues/482) 而添加的。鉴于该问题已经存在，就以它为例。先获取它。
-
+[Issue #482](https://github.com/requests/requests/issues/482), 鉴于该问题已经存在，就以它为例。先获取它。
+```python
 >>> r = requests.get('https://api.github.com/requests/kennethreitz/requests/issues/482')
 >>> r.status_code
 200
@@ -912,8 +922,10 @@ Feature any http verb in docs
 
 >>> print(issue[u'comments'])
 3
-Cool，有 3 个评论。来看一下最后一个评论。
+```
 
+Cool，有 3 个评论。来看一下最后一个评论。
+```python
 >>> r = requests.get(r.url + u'/comments')
 >>> r.status_code
 200
@@ -922,20 +934,26 @@ Cool，有 3 个评论。来看一下最后一个评论。
 [u'body', u'url', u'created_at', u'updated_at', u'user', u'id']
 >>> print comments[2][u'body']
 Probably in the "advanced" section
-嗯，那看起来似乎是个愚蠢之处。发表个评论来告诉这个评论者他自己的愚蠢。那么，这个评论者是谁呢？
+```
 
+嗯，那看起来似乎是个愚蠢的评论。发表个评论来告诉这个评论者他自己的愚蠢。那么，这个评论者是谁呢？
+```python
 >>> print comments[2][u'user'][u'login']
 kennethreitz
-好，来告诉这个叫 Kenneth 的家伙，这个例子应该放在快速上手指南中。根据 GitHub API 文档，其方法是 POST 到该话题。来试试看。
+```
 
+好，来告诉这个叫 Kenneth 的家伙，这个例子应该放在快速上手指南中。根据 GitHub API 文档，其方法是 POST 到该话题。来试试看。
+```python
 >>> body = json.dumps({u"body": u"Sounds great! I'll get right on it!"})
 >>> url = u"https://api.github.com/repos/requests/requests/issues/482/comments"
 
 >>> r = requests.post(url=url, data=body)
 >>> r.status_code
 404
-额，这有点古怪哈。可能需要验证身份。那就有点纠结了，对吧？不对。Requests 简化了多种身份验证形式的使用，包括非常常见的 Basic Auth。
+```
 
+可能需要验证身份。那就有点纠结了。Requests 简化了多种身份验证形式的使用，包括非常常见的Basic Auth。
+```python
 >>> from requests.auth import HTTPBasicAuth
 >>> auth = HTTPBasicAuth('fake@example.com', 'not_a_real_password')
 
@@ -946,8 +964,10 @@ kennethreitz
 >>> content = r.json()
 >>> print(content[u'body'])
 Sounds great! I'll get right on it.
-太棒了！噢，不！原本是想说等一会，因为得去喂的猫。如果能够编辑这条评论那就好了！幸运的是，GitHub 允许使用另一个 HTTP 动词 PATCH 来编辑评论。来试试。
+```
 
+如果能够编辑这条评论那就好了！幸运的是，GitHub 允许使用另一个 HTTP 动词 PATCH 来编辑评论。来试试。
+```python
 >>> print(content[u"id"])
 5804413
 
@@ -957,66 +977,79 @@ Sounds great! I'll get right on it.
 >>> r = requests.patch(url=url, data=body, auth=auth)
 >>> r.status_code
 200
-非常好。现在，来折磨一下这个叫 Kenneth 的家伙，决定要让他急得团团转，也不告诉他是在捣蛋。这意味着想删除这条评论。GitHub 允许使用完全名副其实的 DELETE 方法来删除评论。来清除该评论。
+```
 
+GitHub 允许使用完全名副其实的 DELETE 方法来删除评论。
+```python
 >>> r = requests.delete(url=url, auth=auth)
 >>> r.status_code
 204
 >>> r.headers['status']
 '204 No Content'
-很好。不见了。最后一件想知道的事情是已经使用了多少限额（ratelimit）。查查看，GitHub 在响应头部发送这个信息，因此不必下载整个网页，将使用一个 HEAD 请求来获取响应头。
+```
 
+很好。不见了。最后一件想知道的事情是已经使用了多少限额（ratelimit）。查查看，GitHub在响应头部发送这个信息，因此不必下载整个网页，将使用一个HEAD请求来获取响应头。
+```python
 >>> r = requests.head(url=url, auth=auth)
 >>> print r.headers
 ...
 'x-ratelimit-remaining': '4995'
 'x-ratelimit-limit': '5000'
 ...
+```
+
 很好。是时候写个 Python 程序以各种刺激的方式滥用 GitHub 的 API，还可以使用 4995 次呢。
 
 ### 定制动词
-有时候会碰到一些服务器，处于某些原因，它们允许或者要求用户使用上述 HTTP 动词之外的定制动词。比如说 WEBDAV 服务器会要求使用 MKCOL 方法。别担心，Requests 一样可以搞定它们。可以使用内建的 .request 方法，例如：
-
+有时候会碰到一些服务器，处于某些原因，它们允许或者要求用户使用上述HTTP动词之外的定制动词。比如说WEBDAV服务器会要求使用MKCOL方法。别担心，Requests一样可以搞定它们。可以使用内建的`.request`方法，例如：
+```python
 >>> r = requests.request('MKCOL', url, data=data)
 >>> r.status_code
 200 # Assuming your call was correct
+```
+
 这样就可以使用服务器要求的任意方法动词了。
 
 ### 响应头链接字段
-许多 HTTP API 都有响应头链接字段的特性，它们使得 API 能够更好地自描述和自显露。
+许多HTTP API都有响应头链接字段的特性，它们使得API能够更好地自描述和自显露。
 
-GitHub 在 API 中为 [分页](http://developer.github.com/v3/#pagination) 使用这些特性，例如:
-
+GitHub在API中为[分页](http://developer.github.com/v3/#pagination)使用这些特性，例如:
+```python
 >>> url = 'https://api.github.com/users/kennethreitz/repos?page=1&per_page=10'
 >>> r = requests.head(url=url)
 >>> r.headers['link']
 '<https://api.github.com/users/kennethreitz/repos?page=2&per_page=10>; rel="next", <https://api.github.com/users/kennethreitz/repos?page=6&per_page=10>; rel="last"'
-Requests 会自动解析这些响应头链接字段，并使得它们非常易于使用:
+```
 
+Requests 会自动解析这些响应头链接字段，并使得它们非常易于使用:
+```python
 >>> r.links["next"]
 {'url': 'https://api.github.com/users/kennethreitz/repos?page=2&per_page=10', 'rel': 'next'}
 
 >>> r.links["last"]
 {'url': 'https://api.github.com/users/kennethreitz/repos?page=7&per_page=10', 'rel': 'last'}
+```
 
 ### 传输适配器
-从 v1.0.0 以后，Requests 的内部采用了模块化设计。部分原因是为了实现传输适配器（Transport Adapter），可以看看关于它的[最早描述](http://www.kennethreitz.org/essays/the-future-of-python-http)。传输适配器提供了一个机制，让可以为 HTTP 服务定义交互方法。尤其是它允许应用服务前的配置。
+从 v1.0.0 以后，Requests的内部采用了模块化设计。部分原因是为了实现传输适配器（Transport Adapter），可以看看关于它的[最早描述](http://www.kennethreitz.org/essays/the-future-of-python-http)。传输适配器提供了一个机制，让可以为HTTP服务定义交互方法。尤其是它允许应用服务前的配置。
 
-Requests 自带了一个传输适配器，也就是 [HTTPAdapter](http://cn.python-requests.org/zh_CN/latest/api.html#requests.adapters.HTTPAdapter)。 这个适配器使用了强大的 [urllib3](https://github.com/shazow/urllib3)，为 Requests 提供了默认的 HTTP 和 HTTPS 交互。每当 [Session](http://cn.python-requests.org/zh_CN/latest/api.html#requests.Session) 被初始化，就会有适配器附着在 [Session](http://cn.python-requests.org/zh_CN/latest/api.html#requests.Session) 上，其中一个供 HTTP 使用，另一个供 HTTPS 使用。
+Requests 自带了一个传输适配器，也就是[HTTPAdapter](http://cn.python-requests.org/zh_CN/latest/api.html#requests.adapters.HTTPAdapter)。 这个适配器使用了强大的 [urllib3](https://github.com/shazow/urllib3)，为 Requests 提供了默认的 HTTP 和 HTTPS 交互。每当 [Session](http://cn.python-requests.org/zh_CN/latest/api.html#requests.Session) 被初始化，就会有适配器附着在 [Session](http://cn.python-requests.org/zh_CN/latest/api.html#requests.Session) 上，其中一个供 HTTP 使用，另一个供 HTTPS 使用。
 
 Request 允许用户创建和使用他们自己的传输适配器，实现他们需要的特殊功能。创建好以后，传输适配器可以被加载到一个会话对象上，附带着一个说明，告诉会话适配器应该应用在哪个 web 服务上。
-
+```python
 >>> s = requests.Session()
 >>> s.mount('http://www.github.com', MyAdapter())
+```
+
 这个 mount 调用会注册一个传输适配器的特定实例到一个前缀上面。加载以后，任何使用该会话的 HTTP 请求，只要其 URL 是以给定的前缀开头，该传输适配器就会被使用到。
 
-传输适配器的众多实现细节不在本文档的覆盖范围内，不过可以看看接下来这个简单的 SSL 用例。更多的用法，也许该考虑为 [BaseAdapter](http://cn.python-requests.org/zh_CN/latest/api.html#requests.adapters.BaseAdapter) 创建子类。
+传输适配器的众多实现细节不在本文档的覆盖范围内，不过可以看看接下来这个简单的 SSL 用例。更多的用法，也许该考虑为[BaseAdapter](http://cn.python-requests.org/zh_CN/latest/api.html#requests.adapters.BaseAdapter)创建子类。
 
 ### 示例: 指定的 SSL 版本
-Requests 开发团队刻意指定了内部库（[urllib3](https://github.com/shazow/urllib3)）的默认 SSL 版本。一般情况下这样做没有问题，不过是不是可能会需要连接到一个服务节点，而该节点使用了和默认不同的 SSL 版本。
+Requests 开发团队刻意指定了内部库（[urllib3](https://github.com/shazow/urllib3)）的默认 SSL 版本。一般情况下这样做没有问题，不过可能会需要连接到一个服务节点，而该节点使用了和默认不同的 SSL 版本。
 
 可以使用传输适配器解决这个问题，通过利用 HTTPAdapter 现有的大部分实现，再加上一个 ssl_version 参数并将它传递到 urllib3 中。会创建一个传输适配器，用来告诉 urllib3 让它使用 SSLv3：
-
+```python
 import ssl
 
 from requests.adapters import HTTPAdapter
@@ -1031,30 +1064,36 @@ class Ssl3HttpAdapter(HTTPAdapter):
                                        maxsize=maxsize,
                                        block=block,
                                        ssl_version=ssl.PROTOCOL_SSLv3)
+```
 
 ### 阻塞和非阻塞
-使用默认的传输适配器，Requests 不提供任何形式的非阻塞 IO。 [Response.content](http://cn.python-requests.org/zh_CN/latest/api.html#requests.Response.content) 属性会阻塞，直到整个响应下载完成。如果需要更多精细控制，该库的数据流功能（见 [流式请求](#流式请求)） 允许每次接受少量的一部分响应，不过这些调用依然是阻塞式的。
+使用默认的传输适配器，Requests不提供任何形式的非阻塞 IO。[Response.content](http://cn.python-requests.org/zh_CN/latest/api.html#requests.Response.content)属性会阻塞，直到整个响应下载完成。如果需要更多精细控制，该库的数据流功能（见[流式请求](#流式请求)） 允许每次接受少量的一部分响应，不过这些调用依然是阻塞式的。
 
-如果对于阻塞式 IO 有所顾虑，还有很多项目可以供使用，它们结合了 Requests 和 Python 的某个异步框架。典型的优秀例子是 [grequests](https://github.com/kennethreitz/grequests) 和 [requests-futures](https://github.com/ross/requests-futures)。
+如果对于阻塞式 IO 有所顾虑，还有很多项目可以供使用，它们结合了 Requests 和 Python 的某个异步框架。典型的优秀例子是[grequests](https://github.com/kennethreitz/grequests) 和 [requests-futures](https://github.com/ross/requests-futures)。
 
 ### Header 排序
-在某些特殊情况下也许需要按照次序来提供 header，如果向 headers 关键字参数传入一个 OrderedDict，就可以向提供一个带排序的 header。然而，Requests 使用的默认 header 的次序会被优先选择，这意味着如果在 headers 关键字参数中覆盖了默认 header，和关键字参数中别的 header 相比，它们也许看上去会是次序错误的。
+在某些特殊情况下也许需要按照次序来提供header，如果向 headers 关键字参数传入一个 OrderedDict，就可以提供一个带排序的 header。然而，Requests 使用的默认 header 的次序会被优先选择，这意味着如果在 headers 关键字参数中覆盖了默认 header，和关键字参数中别的 header 相比，它们也许看上去会是次序错误的。
 
-如果这个对来说是个问题，那么用户应该考虑在 [Session](http://cn.python-requests.org/zh_CN/latest/api.html#requests.Session) 对象上面设置默认 header，只要将 [Session](http://cn.python-requests.org/zh_CN/latest/api.html#requests.Session.headers) 设为一个定制的 OrderedDict 即可。这样就会让它成为优选的次序。
+如果这个对来说是个问题，那么用户应该考虑在[Session](http://cn.python-requests.org/zh_CN/latest/api.html#requests.Session) 对象上面设置默认 header，只要将 [Session](http://cn.python-requests.org/zh_CN/latest/api.html#requests.Session.headers) 设为一个定制的 OrderedDict 即可。这样就会让它成为优选的次序。
 
 ### 超时（timeout）
-为防止服务器不能及时响应，大部分发至外部服务器的请求都应该带着 timeout 参数。在默认情况下，除非显式指定了 timeout 值，requests 是不会自动进行超时处理的。如果没有 timeout，的代码可能会挂起若干分钟甚至更长时间。
+为防止服务器不能及时响应，大部分发至外部服务器的请求都应该带着timeout参数。在默认情况下，除非显式指定了timeout值，requests是不会自动进行超时处理的。如果没有timeout，代码可能会挂起若干分钟甚至更长时间。
 
 连接超时指的是在的客户端实现到远端机器端口的连接时（对应的是`connect()`_），Request 会等待的秒数。一个很好的实践方法是把连接超时设为比 3 的倍数略大的一个数值，因为 [TCP 数据包重传窗口 (TCP packet retransmission window)](http://www.hjp.at/doc/rfc/rfc2988.txt) 的默认大小是 3。
 
 一旦的客户端连接到了服务器并且发送了 HTTP 请求，读取超时指的就是客户端等待服务器发送请求的时间。（特定地，它指的是客户端要等待服务器发送字节之间的时间。在 99.9% 的情况下这指的是服务器发送第一个字节之前的时间）。
 
 如果制订了一个单一的值作为 timeout，如下所示：
-
+```python
 r = requests.get('https://github.com', timeout=5)
+```
+
 这一 timeout 值将会用作 connect 和 read 二者的 timeout。如果要分别制定，就传入一个元组：
-
+```python
 r = requests.get('https://github.com', timeout=(3.05, 27))
-如果远端服务器很慢，可以让 Request 永远等待，传入一个 None 作为 timeout 值，然后就冲咖啡去吧。
+```
 
+如果远端服务器很慢，可以让 Request 永远等待，传入一个 None 作为 timeout 值，然后就冲咖啡去吧。
+```python
 r = requests.get('https://github.com', timeout=None)
+```
