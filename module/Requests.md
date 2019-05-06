@@ -1074,7 +1074,7 @@ class Ssl3HttpAdapter(HTTPAdapter):
 ### Header 排序
 在某些特殊情况下也许需要按照次序来提供header，如果向 headers 关键字参数传入一个 OrderedDict，就可以提供一个带排序的 header。然而，Requests 使用的默认 header 的次序会被优先选择，这意味着如果在 headers 关键字参数中覆盖了默认 header，和关键字参数中别的 header 相比，它们也许看上去会是次序错误的。
 
-如果这个对来说是个问题，那么用户应该考虑在[Session](http://cn.python-requests.org/zh_CN/latest/api.html#requests.Session) 对象上面设置默认 header，只要将 [Session](http://cn.python-requests.org/zh_CN/latest/api.html#requests.Session.headers) 设为一个定制的 OrderedDict 即可。这样就会让它成为优选的次序。
+如果这是个问题，那么用户应该考虑在[Session](http://cn.python-requests.org/zh_CN/latest/api.html#requests.Session) 对象上面设置默认 header，只要将 [Session](http://cn.python-requests.org/zh_CN/latest/api.html#requests.Session.headers) 设为一个定制的 OrderedDict 即可。这样就会让它成为优选的次序。
 
 ### 超时（timeout）
 为防止服务器不能及时响应，大部分发至外部服务器的请求都应该带着timeout参数。在默认情况下，除非显式指定了timeout值，requests是不会自动进行超时处理的。如果没有timeout，代码可能会挂起若干分钟甚至更长时间。
