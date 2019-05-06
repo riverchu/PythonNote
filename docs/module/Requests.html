@@ -1069,329 +1069,334 @@ r = requests.get(tarball_url, stream=<span class="hljs-keyword">True</span>)
 <p>&#x6CE8;&#x610F;&#xFF1A;&#x53EA;&#x6709;&#x6240;&#x6709;&#x7684;&#x54CD;&#x5E94;&#x4F53;&#x6570;&#x636E;&#x88AB;&#x8BFB;&#x53D6;&#x5B8C;&#x6BD5;&#x8FDE;&#x63A5;&#x624D;&#x4F1A;&#x88AB;&#x91CA;&#x653E;&#x4E3A;&#x8FDE;&#x63A5;&#x6C60;&#xFF1B;&#x6240;&#x4EE5;&#x786E;&#x4FDD;&#x5C06; stream &#x8BBE;&#x7F6E;&#x4E3A; False &#x6216;&#x8BFB;&#x53D6; Response &#x5BF9;&#x8C61;&#x7684; content &#x5C5E;&#x6027;&#x3002;</p>
 <h3 id="&#x6D41;&#x5F0F;&#x4E0A;&#x4F20;">&#x6D41;&#x5F0F;&#x4E0A;&#x4F20;</h3>
 <p>Requests&#x652F;&#x6301;&#x6D41;&#x5F0F;&#x4E0A;&#x4F20;&#xFF0C;&#x8FD9;&#x5141;&#x8BB8;&#x53D1;&#x9001;&#x5927;&#x7684;&#x6570;&#x636E;&#x6D41;&#x6216;&#x6587;&#x4EF6;&#x800C;&#x65E0;&#x9700;&#x5148;&#x628A;&#x5B83;&#x4EEC;&#x8BFB;&#x5165;&#x5185;&#x5B58;&#x3002;&#x8981;&#x4F7F;&#x7528;&#x6D41;&#x5F0F;&#x4E0A;&#x4F20;&#xFF0C;&#x4EC5;&#x9700;&#x4E3A;&#x7684;&#x8BF7;&#x6C42;&#x4F53;&#x63D0;&#x4F9B;&#x4E00;&#x4E2A;&#x7C7B;&#x6587;&#x4EF6;&#x5BF9;&#x8C61;&#x5373;&#x53EF;&#xFF1A;</p>
-<p>with open(&apos;massive-body&apos;) as f:
-    requests.post(&apos;<a href="http://some.url/streamed" target="_blank">http://some.url/streamed</a>&apos;, data=f)
-&#x8B66;&#x544A;
-&#x8B66;&#x544A;</p>
-<p>&#x5F3A;&#x70C8;&#x5EFA;&#x8BAE;&#x7528;&#x4E8C;&#x8FDB;&#x5236;&#x6A21;&#x5F0F;&#xFF08;<a href="https://docs.python.org/2/tutorial/inputoutput.html#reading-and-writing-files" target="_blank">binary mode</a>&#xFF09;&#x6253;&#x5F00;&#x6587;&#x4EF6;&#x3002;&#x8FD9;&#x662F;&#x56E0;&#x4E3A; requests &#x53EF;&#x80FD;&#x4F1A;&#x4E3A;&#x63D0;&#x4F9B; header &#x4E2D;&#x7684; Content-Length&#xFF0C;&#x5728;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#x8BE5;&#x503C;&#x4F1A;&#x88AB;&#x8BBE;&#x4E3A;&#x6587;&#x4EF6;&#x7684;&#x5B57;&#x8282;&#x6570;&#x3002;&#x5982;&#x679C;&#x7528;&#x6587;&#x672C;&#x6A21;&#x5F0F;&#x6253;&#x5F00;&#x6587;&#x4EF6;&#xFF0C;&#x5C31;&#x53EF;&#x80FD;&#x78B0;&#x5230;&#x9519;&#x8BEF;&#x3002;</p>
+<pre><code class="lang-python"><span class="hljs-keyword">with</span> open(<span class="hljs-string">&apos;massive-body&apos;</span>) <span class="hljs-keyword">as</span> f:
+    requests.post(<span class="hljs-string">&apos;http://some.url/streamed&apos;</span>, data=f)
+</code></pre>
+<p><strong>&#x8B66;&#x544A;</strong><br>&#x5F3A;&#x70C8;&#x5EFA;&#x8BAE;&#x7528;&#x4E8C;&#x8FDB;&#x5236;&#x6A21;&#x5F0F;&#xFF08;<a href="https://docs.python.org/2/tutorial/inputoutput.html#reading-and-writing-files" target="_blank">binary mode</a>&#xFF09;&#x6253;&#x5F00;&#x6587;&#x4EF6;&#x3002;&#x56E0;&#x4E3A; requests &#x53EF;&#x80FD;&#x4F1A;&#x4E3A;&#x63D0;&#x4F9B; header &#x4E2D;&#x7684; Content-Length&#xFF0C;&#x5728;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#x8BE5;&#x503C;&#x4F1A;&#x88AB;&#x8BBE;&#x4E3A;&#x6587;&#x4EF6;&#x7684;&#x5B57;&#x8282;&#x6570;&#x3002;&#x5982;&#x679C;&#x7528;&#x6587;&#x672C;&#x6A21;&#x5F0F;&#x6253;&#x5F00;&#x6587;&#x4EF6;&#xFF0C;&#x5C31;&#x53EF;&#x80FD;&#x78B0;&#x5230;&#x9519;&#x8BEF;&#x3002;</p>
 <h3 id="&#x5757;&#x7F16;&#x7801;&#x8BF7;&#x6C42;">&#x5757;&#x7F16;&#x7801;&#x8BF7;&#x6C42;</h3>
-<p>&#x5BF9;&#x4E8E;&#x51FA;&#x53BB;&#x548C;&#x8FDB;&#x6765;&#x7684;&#x8BF7;&#x6C42;&#xFF0C;Requests &#x4E5F;&#x652F;&#x6301;&#x5206;&#x5757;&#x4F20;&#x8F93;&#x7F16;&#x7801;&#x3002;&#x8981;&#x53D1;&#x9001;&#x4E00;&#x4E2A;&#x5757;&#x7F16;&#x7801;&#x7684;&#x8BF7;&#x6C42;&#xFF0C;&#x4EC5;&#x9700;&#x4E3A;&#x7684;&#x8BF7;&#x6C42;&#x4F53;&#x63D0;&#x4F9B;&#x4E00;&#x4E2A;&#x751F;&#x6210;&#x5668;&#xFF08;&#x6216;&#x4EFB;&#x610F;&#x6CA1;&#x6709;&#x5177;&#x4F53;&#x957F;&#x5EA6;&#x7684;&#x8FED;&#x4EE3;&#x5668;&#xFF09;&#xFF1A;</p>
-<p>def gen():
-    yield &apos;hi&apos;
-    yield &apos;there&apos;</p>
-<p>requests.post(&apos;<a href="http://some.url/chunked" target="_blank">http://some.url/chunked</a>&apos;, data=gen())
-&#x5BF9;&#x4E8E;&#x5206;&#x5757;&#x7684;&#x7F16;&#x7801;&#x8BF7;&#x6C42;&#xFF0C;&#x6700;&#x597D;&#x4F7F;&#x7528; Response.iter_content() &#x5BF9;&#x5176;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x8FED;&#x4EE3;&#x3002;&#x5728;&#x7406;&#x60F3;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x7684; request &#x4F1A;&#x8BBE;&#x7F6E; stream=True&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x8C03;&#x7528; iter_content &#x5E76;&#x5C06;&#x5206;&#x5757;&#x5927;&#x5C0F;&#x53C2;&#x6570;&#x8BBE;&#x4E3A; None&#xFF0C;&#x4ECE;&#x800C;&#x8FDB;&#x884C;&#x5206;&#x5757;&#x7684;&#x8FED;&#x4EE3;&#x3002;&#x5982;&#x679C;&#x8981;&#x8BBE;&#x7F6E;&#x5206;&#x5757;&#x7684;&#x6700;&#x5927;&#x4F53;&#x79EF;&#xFF0C;&#x53EF;&#x4EE5;&#x628A;&#x5206;&#x5757;&#x5927;&#x5C0F;&#x53C2;&#x6570;&#x8BBE;&#x4E3A;&#x4EFB;&#x610F;&#x6574;&#x6570;&#x3002;</p>
+<p>&#x5BF9;&#x4E8E;&#x51FA;&#x53BB;&#x548C;&#x8FDB;&#x6765;&#x7684;&#x8BF7;&#x6C42;&#xFF0C;Requests&#x4E5F;&#x652F;&#x6301;&#x5206;&#x5757;&#x4F20;&#x8F93;&#x7F16;&#x7801;&#x3002;&#x8981;&#x53D1;&#x9001;&#x4E00;&#x4E2A;&#x5757;&#x7F16;&#x7801;&#x7684;&#x8BF7;&#x6C42;&#xFF0C;&#x4EC5;&#x9700;&#x4E3A;&#x7684;&#x8BF7;&#x6C42;&#x4F53;&#x63D0;&#x4F9B;&#x4E00;&#x4E2A;&#x751F;&#x6210;&#x5668;&#xFF08;&#x6216;&#x4EFB;&#x610F;&#x6CA1;&#x6709;&#x5177;&#x4F53;&#x957F;&#x5EA6;&#x7684;&#x8FED;&#x4EE3;&#x5668;&#xFF09;&#xFF1A;</p>
+<pre><code class="lang-Python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">gen</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-keyword">yield</span> <span class="hljs-string">&apos;hi&apos;</span>
+    <span class="hljs-keyword">yield</span> <span class="hljs-string">&apos;there&apos;</span>
+
+requests.post(<span class="hljs-string">&apos;http://some.url/chunked&apos;</span>, data=gen())
+</code></pre>
+<p>&#x5BF9;&#x4E8E;&#x5206;&#x5757;&#x7684;&#x7F16;&#x7801;&#x8BF7;&#x6C42;&#xFF0C;&#x6700;&#x597D;&#x4F7F;&#x7528;<code>Response.iter_content()</code>&#x5BF9;&#x5176;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x8FED;&#x4EE3;&#x3002;&#x5728;&#x7406;&#x60F3;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;request&#x4F1A;&#x8BBE;&#x7F6E;<code>stream=True</code>&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x8C03;&#x7528;<code>iter_content</code>&#x5E76;&#x5C06;&#x5206;&#x5757;&#x5927;&#x5C0F;&#x53C2;&#x6570;&#x8BBE;&#x4E3A;<code>None</code>&#xFF0C;&#x4ECE;&#x800C;&#x8FDB;&#x884C;&#x5206;&#x5757;&#x7684;&#x8FED;&#x4EE3;&#x3002;&#x5982;&#x679C;&#x8981;&#x8BBE;&#x7F6E;&#x5206;&#x5757;&#x7684;&#x6700;&#x5927;&#x4F53;&#x79EF;&#xFF0C;&#x53EF;&#x4EE5;&#x628A;&#x5206;&#x5757;&#x5927;&#x5C0F;&#x53C2;&#x6570;&#x8BBE;&#x4E3A;&#x4EFB;&#x610F;&#x6574;&#x6570;&#x3002;</p>
 <h3 id="post-&#x591A;&#x4E2A;&#x5206;&#x5757;&#x7F16;&#x7801;&#x7684;&#x6587;&#x4EF6;">POST &#x591A;&#x4E2A;&#x5206;&#x5757;&#x7F16;&#x7801;&#x7684;&#x6587;&#x4EF6;</h3>
-<p>&#x53EF;&#x4EE5;&#x5728;&#x4E00;&#x4E2A;&#x8BF7;&#x6C42;&#x4E2D;&#x53D1;&#x9001;&#x591A;&#x4E2A;&#x6587;&#x4EF6;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x5047;&#x8BBE;&#x8981;&#x4E0A;&#x4F20;&#x591A;&#x4E2A;&#x56FE;&#x50CF;&#x6587;&#x4EF6;&#x5230;&#x4E00;&#x4E2A; HTML &#x8868;&#x5355;&#xFF0C;&#x4F7F;&#x7528;&#x4E00;&#x4E2A;&#x591A;&#x6587;&#x4EF6; field &#x53EB;&#x505A; &quot;images&quot;:</p>
-<p><input type="file" name="images" multiple="true" required="true">
-&#x8981;&#x5B9E;&#x73B0;&#xFF0C;&#x53EA;&#x8981;&#x628A;&#x6587;&#x4EF6;&#x8BBE;&#x5230;&#x4E00;&#x4E2A;&#x5143;&#x7EC4;&#x7684;&#x5217;&#x8868;&#x4E2D;&#xFF0C;&#x5176;&#x4E2D;&#x5143;&#x7EC4;&#x7ED3;&#x6784;&#x4E3A; (form_field_name, file_info):</p>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>url = &apos;<a href="http://httpbin.org/post" target="_blank">http://httpbin.org/post</a>&apos;
-multiple_files = [
-        (&apos;images&apos;, (&apos;foo.png&apos;, open(&apos;foo.png&apos;, &apos;rb&apos;), &apos;image/png&apos;)),
-        (&apos;images&apos;, (&apos;bar.png&apos;, open(&apos;bar.png&apos;, &apos;rb&apos;), &apos;image/png&apos;))]
-r = requests.post(url, files=multiple_files)
-r.text
+<p>&#x53EF;&#x4EE5;&#x5728;&#x4E00;&#x4E2A;&#x8BF7;&#x6C42;&#x4E2D;&#x53D1;&#x9001;&#x591A;&#x4E2A;&#x6587;&#x4EF6;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x5047;&#x8BBE;&#x8981;&#x4E0A;&#x4F20;&#x591A;&#x4E2A;&#x56FE;&#x50CF;&#x6587;&#x4EF6;&#x5230;&#x4E00;&#x4E2A;HTML&#x8868;&#x5355;&#xFF0C;&#x4F7F;&#x7528;&#x4E00;&#x4E2A;&#x591A;&#x6587;&#x4EF6;field &#x53EB;&#x505A; &quot;images&quot;:</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;file&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;images&quot;</span> <span class="hljs-attr">multiple</span>=<span class="hljs-string">&quot;true&quot;</span> <span class="hljs-attr">required</span>=<span class="hljs-string">&quot;true&quot;</span>/&gt;</span>
+</code></pre>
+<p>&#x8981;&#x5B9E;&#x73B0;&#xFF0C;&#x53EA;&#x8981;&#x628A;&#x6587;&#x4EF6;&#x8BBE;&#x5230;&#x4E00;&#x4E2A;&#x5143;&#x7EC4;&#x7684;&#x5217;&#x8868;&#x4E2D;&#xFF0C;&#x5176;&#x4E2D;&#x5143;&#x7EC4;&#x7ED3;&#x6784;&#x4E3A;<code>(form_field_name, file_info)</code>:</p>
+<pre><code class="lang-python"><span class="hljs-meta">&gt;&gt;&gt; </span>url = <span class="hljs-string">&apos;http://httpbin.org/post&apos;</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span>multiple_files = [
+        (<span class="hljs-string">&apos;images&apos;</span>, (<span class="hljs-string">&apos;foo.png&apos;</span>, open(<span class="hljs-string">&apos;foo.png&apos;</span>, <span class="hljs-string">&apos;rb&apos;</span>), <span class="hljs-string">&apos;image/png&apos;</span>)),
+        (<span class="hljs-string">&apos;images&apos;</span>, (<span class="hljs-string">&apos;bar.png&apos;</span>, open(<span class="hljs-string">&apos;bar.png&apos;</span>, <span class="hljs-string">&apos;rb&apos;</span>), <span class="hljs-string">&apos;image/png&apos;</span>))]
+<span class="hljs-meta">&gt;&gt;&gt; </span>r = requests.post(url, files=multiple_files)
+<span class="hljs-meta">&gt;&gt;&gt; </span>r.text
 {
   ...
-  &apos;files&apos;: {&apos;images&apos;: &apos;data:image/png;base64,iVBORw ....&apos;}
-  &apos;Content-Type&apos;: &apos;multipart/form-data; boundary=3131623adb2043caaeb5538cc7aa0b3a&apos;,
+  <span class="hljs-string">&apos;files&apos;</span>: {<span class="hljs-string">&apos;images&apos;</span>: <span class="hljs-string">&apos;data:image/png;base64,iVBORw ....&apos;</span>}
+  <span class="hljs-string">&apos;Content-Type&apos;</span>: <span class="hljs-string">&apos;multipart/form-data; boundary=3131623adb2043caaeb5538cc7aa0b3a&apos;</span>,
   ...
 }
-&#x8B66;&#x544A;
-&#x8B66;&#x544A;</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<p>&#x5F3A;&#x70C8;&#x5EFA;&#x8BAE;&#x7528;&#x4E8C;&#x8FDB;&#x5236;&#x6A21;&#x5F0F;&#xFF08;<a href="https://docs.python.org/2/tutorial/inputoutput.html#reading-and-writing-files" target="_blank">binary mode</a>&#xFF09;&#x6253;&#x5F00;&#x6587;&#x4EF6;&#x3002;&#x8FD9;&#x662F;&#x56E0;&#x4E3A; requests &#x53EF;&#x80FD;&#x4F1A;&#x4E3A;&#x63D0;&#x4F9B; header &#x4E2D;&#x7684; Content-Length&#xFF0C;&#x5728;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#x8BE5;&#x503C;&#x4F1A;&#x88AB;&#x8BBE;&#x4E3A;&#x6587;&#x4EF6;&#x7684;&#x5B57;&#x8282;&#x6570;&#x3002;&#x5982;&#x679C;&#x7528;&#x6587;&#x672C;&#x6A21;&#x5F0F;&#x6253;&#x5F00;&#x6587;&#x4EF6;&#xFF0C;&#x5C31;&#x53EF;&#x80FD;&#x78B0;&#x5230;&#x9519;&#x8BEF;&#x3002;</p>
+</code></pre>
+<p><strong>&#x8B66;&#x544A;</strong><br>&#x5F3A;&#x70C8;&#x5EFA;&#x8BAE;&#x7528;&#x4E8C;&#x8FDB;&#x5236;&#x6A21;&#x5F0F;&#xFF08;<a href="https://docs.python.org/2/tutorial/inputoutput.html#reading-and-writing-files" target="_blank">binary mode</a>&#xFF09;&#x6253;&#x5F00;&#x6587;&#x4EF6;&#x3002;&#x8FD9;&#x662F;&#x56E0;&#x4E3A; requests &#x53EF;&#x80FD;&#x4F1A;&#x4E3A;&#x63D0;&#x4F9B; header &#x4E2D;&#x7684; Content-Length&#xFF0C;&#x5728;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#x8BE5;&#x503C;&#x4F1A;&#x88AB;&#x8BBE;&#x4E3A;&#x6587;&#x4EF6;&#x7684;&#x5B57;&#x8282;&#x6570;&#x3002;&#x5982;&#x679C;&#x7528;&#x6587;&#x672C;&#x6A21;&#x5F0F;&#x6253;&#x5F00;&#x6587;&#x4EF6;&#xFF0C;&#x5C31;&#x53EF;&#x80FD;&#x78B0;&#x5230;&#x9519;&#x8BEF;&#x3002;</p>
 <h3 id="&#x4E8B;&#x4EF6;&#x6302;&#x94A9;">&#x4E8B;&#x4EF6;&#x6302;&#x94A9;</h3>
 <p>Requests&#x6709;&#x4E00;&#x4E2A;&#x94A9;&#x5B50;&#x7CFB;&#x7EDF;&#xFF0C;&#x53EF;&#x4EE5;&#x7528;&#x6765;&#x64CD;&#x63A7;&#x90E8;&#x5206;&#x8BF7;&#x6C42;&#x8FC7;&#x7A0B;&#xFF0C;&#x6216;&#x4FE1;&#x53F7;&#x4E8B;&#x4EF6;&#x5904;&#x7406;&#x3002;</p>
-<p>&#x53EF;&#x7528;&#x7684;&#x94A9;&#x5B50;:</p>
-<p>response:
-&#x4ECE;&#x4E00;&#x4E2A;&#x8BF7;&#x6C42;&#x4EA7;&#x751F;&#x7684;&#x54CD;&#x5E94;
-&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4F20;&#x9012;&#x4E00;&#x4E2A; {hook_name: callback_function} &#x5B57;&#x5178;&#x7ED9; hooks &#x8BF7;&#x6C42;&#x53C2;&#x6570;&#x4E3A;&#x6BCF;&#x4E2A;&#x8BF7;&#x6C42;&#x5206;&#x914D;&#x4E00;&#x4E2A;&#x94A9;&#x5B50;&#x51FD;&#x6570;&#xFF1A;</p>
-<p>hooks=dict(response=print_url)
-callback_function &#x4F1A;&#x63A5;&#x53D7;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x5757;&#x4F5C;&#x4E3A;&#x5B83;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x3002;</p>
-<p>def print_url(r, <em>args, *</em>kwargs):
+<p>&#x53EF;&#x7528;&#x7684;&#x94A9;&#x5B50;:
+<code>response</code>: &#x4ECE;&#x4E00;&#x4E2A;&#x8BF7;&#x6C42;&#x4EA7;&#x751F;&#x7684;&#x54CD;&#x5E94;</p>
+<p>&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4F20;&#x9012;&#x4E00;&#x4E2A;<code>{hook_name: callback_function}</code>&#x5B57;&#x5178;&#x7ED9;<code>hooks</code>&#x8BF7;&#x6C42;&#x53C2;&#x6570;&#x4E3A;&#x6BCF;&#x4E2A;&#x8BF7;&#x6C42;&#x5206;&#x914D;&#x4E00;&#x4E2A;&#x94A9;&#x5B50;&#x51FD;&#x6570;&#xFF1A;</p>
+<pre><code class="lang-python">hooks=dict(response=print_url)
+</code></pre>
+<p><code>callback_function</code>&#x4F1A;&#x63A5;&#x53D7;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x5757;&#x4F5C;&#x4E3A;&#x5B83;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x3002;</p>
+<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">print_url</span><span class="hljs-params">(r, *args, **kwargs)</span>:</span>
     print(r.url)
-&#x82E5;&#x6267;&#x884C;&#x7684;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x671F;&#x95F4;&#x53D1;&#x751F;&#x9519;&#x8BEF;&#xFF0C;&#x7CFB;&#x7EDF;&#x4F1A;&#x7ED9;&#x51FA;&#x4E00;&#x4E2A;&#x8B66;&#x544A;&#x3002;</p>
+</code></pre>
+<p>&#x82E5;&#x6267;&#x884C;&#x7684;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x671F;&#x95F4;&#x53D1;&#x751F;&#x9519;&#x8BEF;&#xFF0C;&#x7CFB;&#x7EDF;&#x4F1A;&#x7ED9;&#x51FA;&#x4E00;&#x4E2A;&#x8B66;&#x544A;&#x3002;</p>
 <p>&#x82E5;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x503C;&#xFF0C;&#x9ED8;&#x8BA4;&#x4EE5;&#x8BE5;&#x503C;&#x66FF;&#x6362;&#x4F20;&#x8FDB;&#x6765;&#x7684;&#x6570;&#x636E;&#x3002;&#x82E5;&#x51FD;&#x6570;&#x672A;&#x8FD4;&#x56DE;&#x4EFB;&#x4F55;&#x4E1C;&#x897F;&#xFF0C;&#x4E5F;&#x6CA1;&#x6709;&#x4EC0;&#x4E48;&#x5176;&#x4ED6;&#x7684;&#x5F71;&#x54CD;&#x3002;</p>
-<p>&#x6765;&#x5728;&#x8FD0;&#x884C;&#x671F;&#x95F4;&#x6253;&#x5370;&#x4E00;&#x4E9B;&#x8BF7;&#x6C42;&#x65B9;&#x6CD5;&#x7684;&#x53C2;&#x6570;&#xFF1A;</p>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>requests.get(&apos;<a href="http://httpbin.org" target="_blank">http://httpbin.org</a>&apos;, hooks=dict(response=print_url))
-<a href="http://httpbin.org" target="_blank">http://httpbin.org</a></p>
-<response [200]="">
-
-</response></blockquote>
-</blockquote>
-</blockquote>
+<p>&#x4F8B;, &#x5728;&#x8FD0;&#x884C;&#x671F;&#x95F4;&#x6253;&#x5370;&#x4E00;&#x4E9B;&#x8BF7;&#x6C42;&#x65B9;&#x6CD5;&#x7684;&#x53C2;&#x6570;&#xFF1A;</p>
+<pre><code class="lang-python"><span class="hljs-meta">&gt;&gt;&gt; </span>requests.get(<span class="hljs-string">&apos;http://httpbin.org&apos;</span>, hooks=dict(response=print_url))
+http://httpbin.org
+&lt;Response [<span class="hljs-number">200</span>]&gt;
+</code></pre>
 <h3 id="&#x81EA;&#x5B9A;&#x4E49;&#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;">&#x81EA;&#x5B9A;&#x4E49;&#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;</h3>
 <p>Requests &#x5141;&#x8BB8;&#x4F7F;&#x7528;&#x81EA;&#x5DF1;&#x6307;&#x5B9A;&#x7684;&#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;&#x673A;&#x5236;&#x3002;</p>
-<p>&#x4EFB;&#x4F55;&#x4F20;&#x9012;&#x7ED9;&#x8BF7;&#x6C42;&#x65B9;&#x6CD5;&#x7684; auth &#x53C2;&#x6570;&#x7684;&#x53EF;&#x8C03;&#x7528;&#x5BF9;&#x8C61;&#xFF0C;&#x5728;&#x8BF7;&#x6C42;&#x53D1;&#x51FA;&#x4E4B;&#x524D;&#x90FD;&#x6709;&#x673A;&#x4F1A;&#x4FEE;&#x6539;&#x8BF7;&#x6C42;&#x3002;</p>
-<p>&#x81EA;&#x5B9A;&#x4E49;&#x7684;&#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;&#x673A;&#x5236;&#x662F;&#x4F5C;&#x4E3A; requests.auth.AuthBase &#x7684;&#x5B50;&#x7C7B;&#x6765;&#x5B9E;&#x73B0;&#x7684;&#xFF0C;&#x4E5F;&#x975E;&#x5E38;&#x5BB9;&#x6613;&#x5B9A;&#x4E49;&#x3002;Requests &#x5728; requests.auth &#x4E2D;&#x63D0;&#x4F9B;&#x4E86;&#x4E24;&#x79CD;&#x5E38;&#x89C1;&#x7684;&#x7684;&#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;&#x65B9;&#x6848;&#xFF1A; HTTPBasicAuth &#x548C; HTTPDigestAuth &#x3002;</p>
-<p>&#x5047;&#x8BBE;&#x6709;&#x4E00;&#x4E2A;web&#x670D;&#x52A1;&#xFF0C;&#x4EC5;&#x5728; X-Pizza &#x5934;&#x88AB;&#x8BBE;&#x7F6E;&#x4E3A;&#x4E00;&#x4E2A;&#x5BC6;&#x7801;&#x503C;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x624D;&#x4F1A;&#x6709;&#x54CD;&#x5E94;&#x3002;&#x867D;&#x7136;&#x8FD9;&#x4E0D;&#x592A;&#x53EF;&#x80FD;&#xFF0C;&#x4F46;&#x5C31;&#x4EE5;&#x5B83;&#x4E3A;&#x4F8B;&#x597D;&#x4E86;&#x3002;</p>
-<p>from requests.auth import AuthBase</p>
-<p>class PizzaAuth(AuthBase):
-    &quot;&quot;&quot;Attaches HTTP Pizza Authentication to the given Request object.&quot;&quot;&quot;
-    def <strong>init</strong>(self, username):</p>
-<pre><code>    # setup any auth-related data here
-    self.username = username
+<p>&#x4EFB;&#x4F55;&#x4F20;&#x9012;&#x7ED9;&#x8BF7;&#x6C42;&#x65B9;&#x6CD5;&#x7684;<code>auth</code>&#x53C2;&#x6570;&#x7684;&#x53EF;&#x8C03;&#x7528;&#x5BF9;&#x8C61;&#xFF0C;&#x5728;&#x8BF7;&#x6C42;&#x53D1;&#x51FA;&#x4E4B;&#x524D;&#x90FD;&#x6709;&#x673A;&#x4F1A;&#x4FEE;&#x6539;&#x8BF7;&#x6C42;&#x3002;</p>
+<p>&#x81EA;&#x5B9A;&#x4E49;&#x7684;&#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;&#x673A;&#x5236;&#x662F;&#x4F5C;&#x4E3A;<code>requests.auth.AuthBase</code>&#x7684;&#x5B50;&#x7C7B;&#x6765;&#x5B9E;&#x73B0;&#x7684;&#xFF0C;&#x4E5F;&#x975E;&#x5E38;&#x5BB9;&#x6613;&#x5B9A;&#x4E49;&#x3002;Requests&#x5728;<code>requests.auth</code>&#x4E2D;&#x63D0;&#x4F9B;&#x4E86;&#x4E24;&#x79CD;&#x5E38;&#x89C1;&#x7684;&#x7684;&#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;&#x65B9;&#x6848;&#xFF1A;<code>HTTPBasicAuth</code>&#x548C;<code>HTTPDigestAuth</code>&#x3002;</p>
+<p>&#x5047;&#x8BBE;&#x6709;&#x4E00;&#x4E2A;web&#x670D;&#x52A1;&#xFF0C;&#x4EC5;&#x5728;<code>X-Pizza</code>&#x5934;&#x88AB;&#x8BBE;&#x7F6E;&#x4E3A;&#x4E00;&#x4E2A;&#x5BC6;&#x7801;&#x503C;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x624D;&#x4F1A;&#x6709;&#x54CD;&#x5E94;&#x3002;&#x867D;&#x7136;&#x8FD9;&#x4E0D;&#x592A;&#x53EF;&#x80FD;&#xFF0C;&#x4F46;&#x5C31;&#x4EE5;&#x5B83;&#x4E3A;&#x4F8B;&#x597D;&#x4E86;&#x3002;</p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> requests.auth <span class="hljs-keyword">import</span> AuthBase
 
-def __call__(self, r):
-    # modify and return the request
-    r.headers[&apos;X-Pizza&apos;] = self.username
-    return r
-</code></pre><p>&#x7136;&#x540E;&#x5C31;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x7684;PizzaAuth&#x6765;&#x8FDB;&#x884C;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;:</p>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>requests.get(&apos;<a href="http://pizzabin.org/admin" target="_blank">http://pizzabin.org/admin</a>&apos;, auth=PizzaAuth(&apos;kenneth&apos;))</p>
-<response [200]="">
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PizzaAuth</span><span class="hljs-params">(AuthBase)</span>:</span>
+    <span class="hljs-string">&quot;&quot;&quot;Attaches HTTP Pizza Authentication to the given Request object.&quot;&quot;&quot;</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, username)</span>:</span>
+        <span class="hljs-comment"># setup any auth-related data here</span>
+        self.username = username
 
-</response></blockquote>
-</blockquote>
-</blockquote>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__call__</span><span class="hljs-params">(self, r)</span>:</span>
+        <span class="hljs-comment"># modify and return the request</span>
+        r.headers[<span class="hljs-string">&apos;X-Pizza&apos;</span>] = self.username
+        <span class="hljs-keyword">return</span> r
+</code></pre>
+<p>&#x7136;&#x540E;&#x5C31;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;PizzaAuth&#x6765;&#x8FDB;&#x884C;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;:</p>
+<pre><code class="lang-python"><span class="hljs-meta">&gt;&gt;&gt; </span>requests.get(<span class="hljs-string">&apos;http://pizzabin.org/admin&apos;</span>, auth=PizzaAuth(<span class="hljs-string">&apos;kenneth&apos;</span>))
+&lt;Response [<span class="hljs-number">200</span>]&gt;
+</code></pre>
 <h3 id="&#x6D41;&#x5F0F;&#x8BF7;&#x6C42;">&#x6D41;&#x5F0F;&#x8BF7;&#x6C42;</h3>
-<p>&#x4F7F;&#x7528; <a href="http://cn.python-requests.org/zh_CN/latest/api.html#requests.Response.iter_lines" target="_blank"><code>Response.iter_lines()</code></a> &#x53EF;&#x4EE5;&#x5F88;&#x65B9;&#x4FBF;&#x5730;&#x5BF9;&#x6D41;&#x5F0F; API &#xFF08;&#x4F8B;&#x5982; <a href="https://dev.twittercom/docs/streaming-api" target="_blank">Twitter &#x7684;&#x6D41;&#x5F0F; API</a>&#xFF09; &#x8FDB;&#x884C;&#x8FED;&#x4EE3;&#x3002;&#x7B80;&#x5355;&#x5730;&#x8BBE;&#x7F6E; stream &#x4E3A; True &#x4FBF;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <a href="http://cn.python-requests.org/zh_CN/latest/api.html#requests.Response.iter_lines" target="_blank">iter_lines</a> &#x5BF9;&#x76F8;&#x5E94;&#x8FDB;&#x884C;&#x8FED;&#x4EE3;&#xFF1A;</p>
-<p>import json
-import requests</p>
-<p>r = requests.get(&apos;<a href="http://httpbin.org/stream/20" target="_blank">http://httpbin.org/stream/20</a>&apos;, stream=True)</p>
-<p>for line in r.iter_lines():</p>
-<pre><code># filter out keep-alive new lines
-if line:
-    decoded_line = line.decode(&apos;utf-8&apos;)
-    print(json.loads(decoded_line))
-</code></pre><p>&#x5F53;&#x4F7F;&#x7528; decode_unicode=True &#x5728; <a href="http://cn.python-requests.org/zh_CN/latest/api.html#requests.Response.iter_lines" target="_blank"><code>Response.iter_lines()</code></a> &#x6216; <a href="http://cn.python-requests.org/zh_CN/latest/api.html#requests.Response.iter_content" target="_blank"><code>Response.iter_content()</code></a>&#x4E2D;&#x65F6;&#xFF0C;&#x9700;&#x8981;&#x63D0;&#x4F9B;&#x4E00;&#x4E2A;&#x56DE;&#x9000;&#x7F16;&#x7801;&#x65B9;&#x5F0F;&#xFF0C;&#x4EE5;&#x9632;&#x670D;&#x52A1;&#x5668;&#x6CA1;&#x6709;&#x63D0;&#x4F9B;&#x9ED8;&#x8BA4;&#x56DE;&#x9000;&#x7F16;&#x7801;&#xFF0C;&#x4ECE;&#x800C;&#x5BFC;&#x81F4;&#x9519;&#x8BEF;&#xFF1A;</p>
-<p>r = requests.get(&apos;<a href="http://httpbin.org/stream/20" target="_blank">http://httpbin.org/stream/20</a>&apos;, stream=True)</p>
-<p>if r.encoding is None:
-    r.encoding = &apos;utf-8&apos;</p>
-<p>for line in r.iter_lines(decode_unicode=True):
-    if line:
+<p>&#x4F7F;&#x7528;<a href="http://cn.python-requests.org/zh_CN/latest/api.html#requests.Response.iter_lines" target="_blank"><code>Response.iter_lines()</code></a> &#x53EF;&#x4EE5;&#x5F88;&#x65B9;&#x4FBF;&#x5730;&#x5BF9;&#x6D41;&#x5F0F;API&#xFF08;&#x4F8B;&#x5982; <a href="https://dev.twittercom/docs/streaming-api" target="_blank">Twitter &#x7684;&#x6D41;&#x5F0F; API</a>&#xFF09;&#x8FDB;&#x884C;&#x8FED;&#x4EE3;&#x3002;&#x7B80;&#x5355;&#x5730;&#x8BBE;&#x7F6E;<code>stream</code>&#x4E3A;<code>True</code>&#x4FBF;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<a href="http://cn.python-requests.org/zh_CN/latest/api.html#requests.Response.iter_lines" target="_blank">iter_lines</a>&#x5BF9;&#x76F8;&#x5E94;&#x8FDB;&#x884C;&#x8FED;&#x4EE3;&#xFF1A;</p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> json
+<span class="hljs-keyword">import</span> requests
+
+r = requests.get(<span class="hljs-string">&apos;http://httpbin.org/stream/20&apos;</span>, stream=<span class="hljs-keyword">True</span>)
+
+<span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> r.iter_lines():
+
+    <span class="hljs-comment"># filter out keep-alive new lines</span>
+    <span class="hljs-keyword">if</span> line:
+        decoded_line = line.decode(<span class="hljs-string">&apos;utf-8&apos;</span>)
+        print(json.loads(decoded_line))
+</code></pre>
+<p>&#x5F53;&#x4F7F;&#x7528;<em>decode_unicode=True</em>&#x5728;<a href="http://cn.python-requests.org/zh_CN/latest/api.html#requests.Response.iter_lines" target="_blank"><code>Response.iter_lines()</code></a> &#x6216; <a href="http://cn.python-requests.org/zh_CN/latest/api.html#requests.Response.iter_content" target="_blank"><code>Response.iter_content()</code></a>&#x4E2D;&#x65F6;&#xFF0C;&#x9700;&#x8981;&#x63D0;&#x4F9B;&#x4E00;&#x4E2A;&#x56DE;&#x9000;&#x7F16;&#x7801;&#x65B9;&#x5F0F;&#xFF0C;&#x4EE5;&#x9632;&#x670D;&#x52A1;&#x5668;&#x6CA1;&#x6709;&#x63D0;&#x4F9B;&#x9ED8;&#x8BA4;&#x56DE;&#x9000;&#x7F16;&#x7801;&#xFF0C;&#x4ECE;&#x800C;&#x5BFC;&#x81F4;&#x9519;&#x8BEF;&#xFF1A;</p>
+<pre><code class="lang-python">r = requests.get(<span class="hljs-string">&apos;http://httpbin.org/stream/20&apos;</span>, stream=<span class="hljs-keyword">True</span>)
+
+<span class="hljs-keyword">if</span> r.encoding <span class="hljs-keyword">is</span> <span class="hljs-keyword">None</span>:
+    r.encoding = <span class="hljs-string">&apos;utf-8&apos;</span>
+
+<span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> r.iter_lines(decode_unicode=<span class="hljs-keyword">True</span>):
+    <span class="hljs-keyword">if</span> line:
         print(json.loads(line))
-&#x8B66;&#x544A;
-&#x8B66;&#x544A;</p>
-<p><a href="http://cn.python-requests.org/zh_CN/latest/api.html#requests.Response.iter_lines" target="_blank">iter_lines</a> &#x4E0D;&#x4FDD;&#x8BC1;&#x91CD;&#x8FDB;&#x5165;&#x65F6;&#x7684;&#x5B89;&#x5168;&#x6027;&#x3002;&#x591A;&#x6B21;&#x8C03;&#x7528;&#x8BE5;&#x65B9;&#x6CD5; &#x4F1A;&#x5BFC;&#x81F4;&#x90E8;&#x5206;&#x6536;&#x5230;&#x7684;&#x6570;&#x636E;&#x4E22;&#x5931;&#x3002;&#x5982;&#x679C;&#x8981;&#x5728;&#x591A;&#x5904;&#x8C03;&#x7528;&#x5B83;&#xFF0C;&#x5C31;&#x5E94;&#x8BE5;&#x4F7F;&#x7528;&#x751F;&#x6210;&#x7684;&#x8FED;&#x4EE3;&#x5668;&#x5BF9;&#x8C61;:</p>
-<p>lines = r.iter_lines()</p>
-<h1 id="&#x4FDD;&#x5B58;&#x7B2C;&#x4E00;&#x884C;&#x4EE5;&#x4F9B;&#x540E;&#x9762;&#x4F7F;&#x7528;&#xFF0C;&#x6216;&#x8005;&#x76F4;&#x63A5;&#x8DF3;&#x8FC7;">&#x4FDD;&#x5B58;&#x7B2C;&#x4E00;&#x884C;&#x4EE5;&#x4F9B;&#x540E;&#x9762;&#x4F7F;&#x7528;&#xFF0C;&#x6216;&#x8005;&#x76F4;&#x63A5;&#x8DF3;&#x8FC7;</h1>
-<p>first_line = next(lines)</p>
-<p>for line in lines:
-    print(line)</p>
+</code></pre>
+<p><strong>&#x8B66;&#x544A;</strong>
+<a href="http://cn.python-requests.org/zh_CN/latest/api.html#requests.Response.iter_lines" target="_blank">iter_lines</a> &#x4E0D;&#x4FDD;&#x8BC1;&#x91CD;&#x8FDB;&#x5165;&#x65F6;&#x7684;&#x5B89;&#x5168;&#x6027;&#x3002;&#x591A;&#x6B21;&#x8C03;&#x7528;&#x8BE5;&#x65B9;&#x6CD5; &#x4F1A;&#x5BFC;&#x81F4;&#x90E8;&#x5206;&#x6536;&#x5230;&#x7684;&#x6570;&#x636E;&#x4E22;&#x5931;&#x3002;&#x5982;&#x679C;&#x8981;&#x5728;&#x591A;&#x5904;&#x8C03;&#x7528;&#x5B83;&#xFF0C;&#x5C31;&#x5E94;&#x8BE5;&#x4F7F;&#x7528;&#x751F;&#x6210;&#x7684;&#x8FED;&#x4EE3;&#x5668;&#x5BF9;&#x8C61;:</p>
+<pre><code class="lang-python">lines = r.iter_lines()
+<span class="hljs-comment"># &#x4FDD;&#x5B58;&#x7B2C;&#x4E00;&#x884C;&#x4EE5;&#x4F9B;&#x540E;&#x9762;&#x4F7F;&#x7528;&#xFF0C;&#x6216;&#x8005;&#x76F4;&#x63A5;&#x8DF3;&#x8FC7;</span>
+
+first_line = next(lines)
+
+<span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> lines:
+    print(line)
+</code></pre>
 <h3 id="&#x4EE3;&#x7406;">&#x4EE3;&#x7406;</h3>
-<p>&#x5982;&#x679C;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x4EE3;&#x7406;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4E3A;&#x4EFB;&#x610F;&#x8BF7;&#x6C42;&#x65B9;&#x6CD5;&#x63D0;&#x4F9B; proxies &#x53C2;&#x6570;&#x6765;&#x914D;&#x7F6E;&#x5355;&#x4E2A;&#x8BF7;&#x6C42;:</p>
-<p>import requests</p>
-<p>proxies = {
-  &quot;http&quot;: &quot;<a href="http://10.10.1.10:3128" target="_blank">http://10.10.1.10:3128</a>&quot;,
-  &quot;https&quot;: &quot;<a href="http://10.10.1.10:1080" target="_blank">http://10.10.1.10:1080</a>&quot;,
-}</p>
-<p>requests.get(&quot;<a href="http://example.org" target="_blank">http://example.org</a>&quot;, proxies=proxies)
-&#x4E5F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x73AF;&#x5883;&#x53D8;&#x91CF; HTTP_PROXY &#x548C; HTTPS_PROXY &#x6765;&#x914D;&#x7F6E;&#x4EE3;&#x7406;&#x3002;</p>
-<p>$ export HTTP_PROXY=&quot;<a href="http://10.10.1.10:3128" target="_blank">http://10.10.1.10:3128</a>&quot;
-$ export HTTPS_PROXY=&quot;<a href="http://10.10.1.10:1080" target="_blank">http://10.10.1.10:1080</a>&quot;</p>
-<p>$ python</p>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>import requests
-requests.get(&quot;<a href="http://example.org" target="_blank">http://example.org</a>&quot;)
-&#x82E5;&#x7684;&#x4EE3;&#x7406;&#x9700;&#x8981;&#x4F7F;&#x7528;HTTP Basic Auth&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <a href="http://user:password@host/" target="_blank">http://user:password@host/</a> &#x8BED;&#x6CD5;&#xFF1A;</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<p>proxies = {
-    &quot;http&quot;: &quot;<a href="http://user:pass@10.10.1.10:3128/" target="_blank">http://user:pass@10.10.1.10:3128/</a>&quot;,
+<p>&#x5982;&#x679C;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x4EE3;&#x7406;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4E3A;&#x4EFB;&#x610F;&#x8BF7;&#x6C42;&#x65B9;&#x6CD5;&#x63D0;&#x4F9B;<code>proxies</code>&#x53C2;&#x6570;&#x6765;&#x914D;&#x7F6E;&#x5355;&#x4E2A;&#x8BF7;&#x6C42;:</p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> requests
+
+proxies = {
+  <span class="hljs-string">&quot;http&quot;</span>: <span class="hljs-string">&quot;http://10.10.1.10:3128&quot;</span>,
+  <span class="hljs-string">&quot;https&quot;</span>: <span class="hljs-string">&quot;http://10.10.1.10:1080&quot;</span>,
 }
-&#x8981;&#x4E3A;&#x67D0;&#x4E2A;&#x7279;&#x5B9A;&#x7684;&#x8FDE;&#x63A5;&#x65B9;&#x5F0F;&#x6216;&#x8005;&#x4E3B;&#x673A;&#x8BBE;&#x7F6E;&#x4EE3;&#x7406;&#xFF0C;&#x4F7F;&#x7528; scheme://hostname &#x4F5C;&#x4E3A; key&#xFF0C; &#x5B83;&#x4F1A;&#x9488;&#x5BF9;&#x6307;&#x5B9A;&#x7684;&#x4E3B;&#x673A;&#x548C;&#x8FDE;&#x63A5;&#x65B9;&#x5F0F;&#x8FDB;&#x884C;&#x5339;&#x914D;&#x3002;</p>
-<p>proxies = {&apos;<a href="http://10.20.1.128" target="_blank">http://10.20.1.128</a>&apos;: &apos;<a href="http://10.10.1.10:5323&apos;}" target="_blank">http://10.10.1.10:5323&apos;}</a>
-&#x6CE8;&#x610F;&#xFF0C;&#x4EE3;&#x7406; URL &#x5FC5;&#x987B;&#x5305;&#x542B;&#x8FDE;&#x63A5;&#x65B9;&#x5F0F;&#x3002;</p>
-<h3 id="socks">SOCKS</h3>
+
+requests.get(<span class="hljs-string">&quot;http://example.org&quot;</span>, proxies=proxies)
+</code></pre>
+<p>&#x4E5F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x73AF;&#x5883;&#x53D8;&#x91CF; HTTP_PROXY &#x548C; HTTPS_PROXY &#x6765;&#x914D;&#x7F6E;&#x4EE3;&#x7406;&#x3002;</p>
+<pre><code class="lang-Python">$ export HTTP_PROXY=<span class="hljs-string">&quot;http://10.10.1.10:3128&quot;</span>
+$ export HTTPS_PROXY=<span class="hljs-string">&quot;http://10.10.1.10:1080&quot;</span>
+
+$ python
+<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">import</span> requests
+<span class="hljs-meta">&gt;&gt;&gt; </span>requests.get(<span class="hljs-string">&quot;http://example.org&quot;</span>)
+</code></pre>
+<p>&#x82E5;&#x7684;&#x4EE3;&#x7406;&#x9700;&#x8981;&#x4F7F;&#x7528;HTTP Basic Auth&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<em><a href="http://user:password@host/" target="_blank">http://user:password@host/</a></em>&#x8BED;&#x6CD5;&#xFF1A;</p>
+<pre><code class="lang-python">proxies = {
+    <span class="hljs-string">&quot;http&quot;</span>: <span class="hljs-string">&quot;http://user:pass@10.10.1.10:3128/&quot;</span>,
+}
+</code></pre>
+<p>&#x8981;&#x4E3A;&#x67D0;&#x4E2A;&#x7279;&#x5B9A;&#x7684;&#x8FDE;&#x63A5;&#x65B9;&#x5F0F;&#x6216;&#x8005;&#x4E3B;&#x673A;&#x8BBE;&#x7F6E;&#x4EE3;&#x7406;&#xFF0C;&#x4F7F;&#x7528;<em>scheme://hostname</em>&#x4F5C;&#x4E3A;key&#xFF0C;&#x5B83;&#x4F1A;&#x9488;&#x5BF9;&#x6307;&#x5B9A;&#x7684;&#x4E3B;&#x673A;&#x548C;&#x8FDE;&#x63A5;&#x65B9;&#x5F0F;&#x8FDB;&#x884C;&#x5339;&#x914D;&#x3002;</p>
+<pre><code class="lang-python">proxies = {<span class="hljs-string">&apos;http://10.20.1.128&apos;</span>: <span class="hljs-string">&apos;http://10.10.1.10:5323&apos;</span>}
+</code></pre>
+<p>&#x6CE8;&#x610F;&#xFF0C;&#x4EE3;&#x7406; URL &#x5FC5;&#x987B;&#x5305;&#x542B;&#x8FDE;&#x63A5;&#x65B9;&#x5F0F;&#x3002;</p>
+<h4 id="socks">SOCKS</h4>
 <p>2.10.0 &#x65B0;&#x7248;&#x529F;&#x80FD;.</p>
-<p>&#x9664;&#x4E86;&#x57FA;&#x672C;&#x7684; HTTP &#x4EE3;&#x7406;&#xFF0C;Request &#x8FD8;&#x652F;&#x6301; SOCKS &#x534F;&#x8BAE;&#x7684;&#x4EE3;&#x7406;&#x3002;&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x53EF;&#x9009;&#x529F;&#x80FD;&#xFF0C;&#x82E5;&#x8981;&#x4F7F;&#x7528;&#xFF0C; &#x9700;&#x8981;&#x5B89;&#x88C5;&#x7B2C;&#x4E09;&#x65B9;&#x5E93;&#x3002;</p>
-<p>&#x53EF;&#x4EE5;&#x7528; pip &#x83B7;&#x53D6;&#x4F9D;&#x8D56;:</p>
-<p>$ pip install requests[socks]
-&#x5B89;&#x88C5;&#x597D;&#x4F9D;&#x8D56;&#x4EE5;&#x540E;&#xFF0C;&#x4F7F;&#x7528; SOCKS &#x4EE3;&#x7406;&#x548C;&#x4F7F;&#x7528; HTTP &#x4EE3;&#x7406;&#x4E00;&#x6837;&#x7B80;&#x5355;&#xFF1A;</p>
-<p>proxies = {
-    &apos;http&apos;: &apos;socks5://user:pass@host:port&apos;,
-    &apos;https&apos;: &apos;socks5://user:pass@host:port&apos;
-}</p>
+<p>&#x9664;&#x4E86;&#x57FA;&#x672C;&#x7684;HTTP&#x4EE3;&#x7406;&#xFF0C;Request&#x8FD8;&#x652F;&#x6301;SOCKS&#x534F;&#x8BAE;&#x7684;&#x4EE3;&#x7406;&#x3002;&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x53EF;&#x9009;&#x529F;&#x80FD;&#xFF0C;&#x82E5;&#x8981;&#x4F7F;&#x7528;&#xFF0C;&#x9700;&#x8981;&#x5B89;&#x88C5;&#x7B2C;&#x4E09;&#x65B9;&#x5E93;&#x3002;</p>
+<p>&#x53EF;&#x4EE5;&#x7528;pip&#x83B7;&#x53D6;&#x4F9D;&#x8D56;:</p>
+<pre><code class="lang-bash">$ pip install requests[socks]
+</code></pre>
+<p>&#x5B89;&#x88C5;&#x597D;&#x4F9D;&#x8D56;&#x4EE5;&#x540E;&#xFF0C;&#x4F7F;&#x7528;SOCKS&#x4EE3;&#x7406;&#x548C;&#x4F7F;&#x7528;HTTP&#x4EE3;&#x7406;&#x4E00;&#x6837;&#x7B80;&#x5355;&#xFF1A;</p>
+<pre><code class="lang-python">proxies = {
+    <span class="hljs-string">&apos;http&apos;</span>: <span class="hljs-string">&apos;socks5://user:pass@host:port&apos;</span>,
+    <span class="hljs-string">&apos;https&apos;</span>: <span class="hljs-string">&apos;socks5://user:pass@host:port&apos;</span>
+}
+</code></pre>
 <h3 id="&#x5408;&#x89C4;&#x6027;">&#x5408;&#x89C4;&#x6027;</h3>
-<p>Requests &#x7B26;&#x5408;&#x6240;&#x6709;&#x76F8;&#x5173;&#x7684;&#x89C4;&#x8303;&#x548C; RFC&#xFF0C;&#x8FD9;&#x6837;&#x4E0D;&#x4F1A;&#x4E3A;&#x7528;&#x6237;&#x9020;&#x6210;&#x4E0D;&#x5FC5;&#x8981;&#x7684;&#x56F0;&#x96BE;&#x3002;&#x4F46;&#x8FD9;&#x79CD;&#x5BF9;&#x89C4;&#x8303;&#x7684;&#x8003;&#x8651;&#x5BFC;&#x81F4;&#x4E00;&#x4E9B;&#x884C;&#x4E3A;&#x5BF9;&#x4E8E;&#x4E0D;&#x719F;&#x6089;&#x76F8;&#x5173;&#x89C4;&#x8303;&#x7684;&#x4EBA;&#x6765;&#x8BF4;&#x770B;&#x4F3C;&#x6709;&#x70B9;&#x5947;&#x602A;&#x3002;</p>
-<h3 id="&#x7F16;&#x7801;&#x65B9;&#x5F0F;">&#x7F16;&#x7801;&#x65B9;&#x5F0F;</h3>
-<p>&#x5F53;&#x6536;&#x5230;&#x4E00;&#x4E2A;&#x54CD;&#x5E94;&#x65F6;&#xFF0C;Requests &#x4F1A;&#x731C;&#x6D4B;&#x54CD;&#x5E94;&#x7684;&#x7F16;&#x7801;&#x65B9;&#x5F0F;&#xFF0C;&#x7528;&#x4E8E;&#x5728;&#x8C03;&#x7528; <a href="http://cn.python-requests.org/zh_CN/latest/api.html#requests.Response.text" target="_blank">Response.text</a> &#x65B9;&#x6CD5;&#x65F6;&#x5BF9;&#x54CD;&#x5E94;&#x8FDB;&#x884C;&#x89E3;&#x7801;&#x3002;Requests &#x9996;&#x5148;&#x5728; HTTP &#x5934;&#x90E8;&#x68C0;&#x6D4B;&#x662F;&#x5426;&#x5B58;&#x5728;&#x6307;&#x5B9A;&#x7684;&#x7F16;&#x7801;&#x65B9;&#x5F0F;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x5B58;&#x5728;&#xFF0C;&#x5219;&#x4F1A;&#x4F7F;&#x7528; <a href="http://pypi.python.org/pypi/charade" target="_blank">charade</a> &#x6765;&#x5C1D;&#x8BD5;&#x731C;&#x6D4B;&#x7F16;&#x7801;&#x65B9;&#x5F0F;&#x3002;</p>
-<p>&#x53EA;&#x6709;&#x5F53; HTTP &#x5934;&#x90E8;&#x4E0D;&#x5B58;&#x5728;&#x660E;&#x786E;&#x6307;&#x5B9A;&#x7684;&#x5B57;&#x7B26;&#x96C6;&#xFF0C;&#x5E76;&#x4E14; Content-Type &#x5934;&#x90E8;&#x5B57;&#x6BB5;&#x5305;&#x542B; text &#x503C;&#x4E4B;&#x65F6;&#xFF0C; Requests &#x624D;&#x4E0D;&#x53BB;&#x731C;&#x6D4B;&#x7F16;&#x7801;&#x65B9;&#x5F0F;&#x3002;&#x5728;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C; <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html#sec3.7.1" target="_blank">RFC 2616</a> &#x6307;&#x5B9A;&#x9ED8;&#x8BA4;&#x5B57;&#x7B26;&#x96C6;&#x5FC5;&#x987B;&#x662F; ISO-8859-1 &#x3002;Requests &#x9075;&#x4ECE;&#x8FD9;&#x4E00;&#x89C4;&#x8303;&#x3002;&#x5982;&#x679C;&#x9700;&#x8981;&#x4E00;&#x79CD;&#x4E0D;&#x540C;&#x7684;&#x7F16;&#x7801;&#x65B9;&#x5F0F;&#xFF0C;&#x53EF;&#x4EE5;&#x624B;&#x52A8;&#x8BBE;&#x7F6E; <a href="http://cn.python-requests.org/zh_CN/latest/api.html#requests.Response.encoding" target="_blank">Response.encoding</a> &#x5C5E;&#x6027;&#xFF0C;&#x6216;&#x4F7F;&#x7528;&#x539F;&#x59CB;&#x7684; <a href="http://cn.python-requests.org/zh_CN/latest/api.html#requests.Response.content" target="_blank">Response.content</a>&#x3002;</p>
+<p>Requests&#x7B26;&#x5408;&#x6240;&#x6709;&#x76F8;&#x5173;&#x7684;&#x89C4;&#x8303;&#x548C;RFC&#xFF0C;&#x8FD9;&#x6837;&#x4E0D;&#x4F1A;&#x4E3A;&#x7528;&#x6237;&#x9020;&#x6210;&#x4E0D;&#x5FC5;&#x8981;&#x7684;&#x56F0;&#x96BE;&#x3002;&#x4F46;&#x8FD9;&#x79CD;&#x5BF9;&#x89C4;&#x8303;&#x7684;&#x8003;&#x8651;&#x5BFC;&#x81F4;&#x4E00;&#x4E9B;&#x884C;&#x4E3A;&#x5BF9;&#x4E8E;&#x4E0D;&#x719F;&#x6089;&#x76F8;&#x5173;&#x89C4;&#x8303;&#x7684;&#x4EBA;&#x6765;&#x8BF4;&#x770B;&#x4F3C;&#x6709;&#x70B9;&#x5947;&#x602A;&#x3002;</p>
+<h4 id="&#x7F16;&#x7801;&#x65B9;&#x5F0F;">&#x7F16;&#x7801;&#x65B9;&#x5F0F;</h4>
+<p>&#x5F53;&#x6536;&#x5230;&#x4E00;&#x4E2A;&#x54CD;&#x5E94;&#x65F6;&#xFF0C;Requests&#x4F1A;&#x731C;&#x6D4B;&#x54CD;&#x5E94;&#x7684;&#x7F16;&#x7801;&#x65B9;&#x5F0F;&#xFF0C;&#x7528;&#x4E8E;&#x5728;&#x8C03;&#x7528;<a href="http://cn.python-requests.org/zh_CN/latest/api.html#requests.Response.text" target="_blank">Response.text</a>&#x65B9;&#x6CD5;&#x65F6;&#x5BF9;&#x54CD;&#x5E94;&#x8FDB;&#x884C;&#x89E3;&#x7801;&#x3002;Requests&#x9996;&#x5148;&#x5728;HTTP&#x5934;&#x90E8;&#x68C0;&#x6D4B;&#x662F;&#x5426;&#x5B58;&#x5728;&#x6307;&#x5B9A;&#x7684;&#x7F16;&#x7801;&#x65B9;&#x5F0F;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x5B58;&#x5728;&#xFF0C;&#x5219;&#x4F1A;&#x4F7F;&#x7528;<a href="http://pypi.python.org/pypi/charade" target="_blank">charade</a>&#x6765;&#x5C1D;&#x8BD5;&#x731C;&#x6D4B;&#x7F16;&#x7801;&#x65B9;&#x5F0F;&#x3002;</p>
+<p>&#x53EA;&#x6709;&#x5F53;HTTP&#x5934;&#x90E8;&#x4E0D;&#x5B58;&#x5728;&#x660E;&#x786E;&#x6307;&#x5B9A;&#x7684;&#x5B57;&#x7B26;&#x96C6;&#xFF0C;&#x5E76;&#x4E14;<code>Content-Type</code>&#x5934;&#x90E8;&#x5B57;&#x6BB5;&#x5305;&#x542B;<code>text</code>&#x503C;&#x4E4B;&#x65F6;&#xFF0C;Requests&#x624D;&#x4E0D;&#x53BB;&#x731C;&#x6D4B;&#x7F16;&#x7801;&#x65B9;&#x5F0F;&#x3002;&#x5728;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html#sec3.7.1" target="_blank">RFC 2616</a> &#x6307;&#x5B9A;&#x9ED8;&#x8BA4;&#x5B57;&#x7B26;&#x96C6;&#x5FC5;&#x987B;&#x662F;<code>ISO-8859-1</code>&#x3002;Requests&#x9075;&#x4ECE;&#x8FD9;&#x4E00;&#x89C4;&#x8303;&#x3002;&#x5982;&#x679C;&#x9700;&#x8981;&#x4E00;&#x79CD;&#x4E0D;&#x540C;&#x7684;&#x7F16;&#x7801;&#x65B9;&#x5F0F;&#xFF0C;&#x53EF;&#x4EE5;&#x624B;&#x52A8;&#x8BBE;&#x7F6E;<a href="http://cn.python-requests.org/zh_CN/latest/api.html#requests.Response.encoding" target="_blank">Response.encoding</a>&#x5C5E;&#x6027;&#xFF0C;&#x6216;&#x4F7F;&#x7528;&#x539F;&#x59CB;&#x7684;<a href="http://cn.python-requests.org/zh_CN/latest/api.html#requests.Response.content" target="_blank">Response.content</a>&#x3002;</p>
 <h3 id="http&#x52A8;&#x8BCD;">HTTP&#x52A8;&#x8BCD;</h3>
-<p>Requests &#x63D0;&#x4F9B;&#x4E86;&#x51E0;&#x4E4E;&#x6240;&#x6709;HTTP&#x52A8;&#x8BCD;&#x7684;&#x529F;&#x80FD;&#xFF1A;GET&#x3001;OPTIONS&#x3001;HEAD&#x3001;POST&#x3001;PUT&#x3001;PATCH&#x3001;DELETE&#x3002;&#x4EE5;&#x4E0B;&#x5185;&#x5BB9;&#x4E3A;&#x4F7F;&#x7528; Requests &#x4E2D;&#x7684;&#x8FD9;&#x4E9B;&#x52A8;&#x8BCD;&#x4EE5;&#x53CA; Github API &#x63D0;&#x4F9B;&#x4E86;&#x8BE6;&#x7EC6;&#x793A;&#x4F8B;&#x3002;</p>
-<p>&#x5C06;&#x4ECE;&#x6700;&#x5E38;&#x4F7F;&#x7528;&#x7684;&#x52A8;&#x8BCD; GET &#x5F00;&#x59CB;&#x3002;HTTP GET &#x662F;&#x4E00;&#x4E2A;&#x5E42;&#x7B49;&#x65B9;&#x6CD5;&#xFF0C;&#x4ECE;&#x7ED9;&#x5B9A;&#x7684; URL &#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x8D44;&#x6E90;&#x3002;&#x56E0;&#x800C;&#xFF0C;&#x5F53;&#x8BD5;&#x56FE;&#x4ECE;&#x4E00;&#x4E2A; web &#x4F4D;&#x7F6E;&#x83B7;&#x53D6;&#x6570;&#x636E;&#x4E4B;&#x65F6;&#xFF0C;&#x5E94;&#x8BE5;&#x4F7F;&#x7528;&#x8FD9;&#x4E2A;&#x52A8;&#x8BCD;&#x3002;&#x4E00;&#x4E2A;&#x4F7F;&#x7528;&#x793A;&#x4F8B;&#x662F;&#x5C1D;&#x8BD5;&#x4ECE; Github &#x4E0A;&#x83B7;&#x53D6;&#x5173;&#x4E8E;&#x4E00;&#x4E2A;&#x7279;&#x5B9A; commit &#x7684;&#x4FE1;&#x606F;&#x3002;&#x5047;&#x8BBE;&#x60F3;&#x83B7;&#x53D6; Requests &#x7684; commit a050faf &#x7684;&#x4FE1;&#x606F;&#x3002;&#x53EF;&#x4EE5;&#x8FD9;&#x6837;&#x53BB;&#x505A;&#xFF1A;</p>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>import requests
-r = requests.get(&apos;<a href="https://api.github.com/repos/requests/requests/git/commits/a050faf084662f3a352dd1a941f2c7c9f886d4ad" target="_blank">https://api.github.com/repos/requests/requests/git/commits/a050faf084662f3a352dd1a941f2c7c9f886d4ad</a>&apos;)
-&#x5E94;&#x8BE5;&#x786E;&#x8BA4; GitHub &#x662F;&#x5426;&#x6B63;&#x786E;&#x54CD;&#x5E94;&#x3002;&#x5982;&#x679C;&#x6B63;&#x786E;&#x54CD;&#x5E94;&#xFF0C;&#x60F3;&#x5F04;&#x6E05;&#x54CD;&#x5E94;&#x5185;&#x5BB9;&#x662F;&#x4EC0;&#x4E48;&#x7C7B;&#x578B;&#x7684;&#x3002;&#x50CF;&#x8FD9;&#x6837;&#x53BB;&#x505A;&#xFF1A;</p>
-<p>if (r.status_code == requests.codes.ok):
-...     print r.headers[&apos;content-type&apos;]
+<p>Requests&#x63D0;&#x4F9B;&#x4E86;&#x51E0;&#x4E4E;&#x6240;&#x6709;HTTP&#x52A8;&#x8BCD;&#x7684;&#x529F;&#x80FD;&#xFF1A;GET&#x3001;OPTIONS&#x3001;HEAD&#x3001;POST&#x3001;PUT&#x3001;PATCH&#x3001;DELETE&#x3002;&#x4EE5;&#x4E0B;&#x5185;&#x5BB9;&#x4E3A;&#x4F7F;&#x7528;Requests&#x4E2D;&#x7684;&#x8FD9;&#x4E9B;&#x52A8;&#x8BCD;&#x4EE5;&#x53CA;Github API&#x63D0;&#x4F9B;&#x4E86;&#x8BE6;&#x7EC6;&#x793A;&#x4F8B;&#x3002;</p>
+<p>&#x5C06;&#x4ECE;&#x6700;&#x5E38;&#x4F7F;&#x7528;&#x7684;&#x52A8;&#x8BCD;GET&#x5F00;&#x59CB;&#x3002;HTTP GET&#x662F;&#x4E00;&#x4E2A;&#x5E42;&#x7B49;&#x65B9;&#x6CD5;&#xFF0C;&#x4ECE;&#x7ED9;&#x5B9A;&#x7684;URL&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x8D44;&#x6E90;&#x3002;&#x56E0;&#x800C;&#xFF0C;&#x5F53;&#x8BD5;&#x56FE;&#x4ECE;&#x4E00;&#x4E2A;web&#x4F4D;&#x7F6E;&#x83B7;&#x53D6;&#x6570;&#x636E;&#x4E4B;&#x65F6;&#xFF0C;&#x5E94;&#x8BE5;&#x4F7F;&#x7528;&#x8FD9;&#x4E2A;&#x52A8;&#x8BCD;&#x3002;&#x4E00;&#x4E2A;&#x4F7F;&#x7528;&#x793A;&#x4F8B;&#x662F;&#x5C1D;&#x8BD5;&#x4ECE;Github&#x4E0A;&#x83B7;&#x53D6;&#x5173;&#x4E8E;&#x4E00;&#x4E2A;&#x7279;&#x5B9A;commit&#x7684;&#x4FE1;&#x606F;&#x3002;&#x5047;&#x8BBE;&#x60F3;&#x83B7;&#x53D6;Requests&#x7684;commit a050faf&#x7684;&#x4FE1;&#x606F;&#x3002;&#x53EF;&#x4EE5;&#x8FD9;&#x6837;&#x53BB;&#x505A;&#xFF1A;</p>
+<pre><code class="lang-python"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">import</span> requests
+<span class="hljs-meta">&gt;&gt;&gt; </span>r = requests.get(<span class="hljs-string">&apos;https://api.github.com/repos/requests/requests/git/commits/a050faf084662f3a352dd1a941f2c7c9f886d4ad&apos;</span>)
+</code></pre>
+<p>&#x5E94;&#x8BE5;&#x786E;&#x8BA4;GitHub&#x662F;&#x5426;&#x6B63;&#x786E;&#x54CD;&#x5E94;&#x3002;&#x5982;&#x679C;&#x6B63;&#x786E;&#x54CD;&#x5E94;&#xFF0C;&#x60F3;&#x5F04;&#x6E05;&#x54CD;&#x5E94;&#x5185;&#x5BB9;&#x662F;&#x4EC0;&#x4E48;&#x7C7B;&#x578B;&#x7684;&#x3002;</p>
+<pre><code class="lang-python"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">if</span> (r.status_code == requests.codes.ok):
+<span class="hljs-meta">... </span>    <span class="hljs-keyword">print</span> r.headers[<span class="hljs-string">&apos;content-type&apos;</span>]
 ...
-application/json; charset=utf-8
-&#x53EF;&#x89C1;&#xFF0C;GitHub &#x8FD4;&#x56DE;&#x4E86; JSON &#x6570;&#x636E;&#xFF0C;&#x975E;&#x5E38;&#x597D;&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; r.json &#x65B9;&#x6CD5;&#x628A;&#x8FD9;&#x4E2A;&#x8FD4;&#x56DE;&#x7684;&#x6570;&#x636E;&#x89E3;&#x6790;&#x6210; Python &#x5BF9;&#x8C61;&#x3002;</p>
-<p>commit_data = r.json()</p>
-<p>print commit_data.keys()
-[u&apos;committer&apos;, u&apos;author&apos;, u&apos;url&apos;, u&apos;tree&apos;, u&apos;sha&apos;, u&apos;parents&apos;, u&apos;message&apos;]</p>
-<p>print commit_data[u&apos;committer&apos;]
-{u&apos;date&apos;: u&apos;2012-05-10T11:10:50-07:00&apos;, u&apos;email&apos;: u&apos;me@kennethreitz.com&apos;, u&apos;name&apos;: u&apos;Kenneth Reitz&apos;}</p>
-<p>print commit_data[u&apos;message&apos;]
-makin&apos; history
-&#x5230;&#x76EE;&#x524D;&#x4E3A;&#x6B62;&#xFF0C;&#x4E00;&#x5207;&#x90FD;&#x975E;&#x5E38;&#x7B80;&#x5355;&#x3002;&#x55EF;&#xFF0C;&#x6765;&#x7814;&#x7A76;&#x4E00;&#x4E0B; GitHub &#x7684; API&#x3002;&#x53EF;&#x4EE5;&#x53BB;&#x770B;&#x770B;&#x6587;&#x6863;&#xFF0C;&#x4F46;&#x5982;&#x679C;&#x4F7F;&#x7528; Requests &#x6765;&#x7814;&#x7A76;&#x4E5F;&#x8BB8;&#x4F1A;&#x66F4;&#x6709;&#x610F;&#x601D;&#x4E00;&#x70B9;&#x3002;&#x53EF;&#x4EE5;&#x501F;&#x52A9; Requests &#x7684; OPTIONS &#x52A8;&#x8BCD;&#x6765;&#x770B;&#x770B;&#x521A;&#x4F7F;&#x7528;&#x8FC7;&#x7684; url &#x652F;&#x6301;&#x54EA;&#x4E9B; HTTP &#x65B9;&#x6CD5;&#x3002;</p>
-<p>verbs = requests.options(r.url)
-verbs.status_code
-500
-&#x989D;&#xFF0C;&#x8FD9;&#x662F;&#x600E;&#x4E48;&#x56DE;&#x4E8B;&#xFF1F;&#x6BEB;&#x65E0;&#x5E2E;&#x52A9;&#x561B;&#xFF01;&#x539F;&#x6765; GitHub&#xFF0C;&#x4E0E;&#x8BB8;&#x591A; API &#x63D0;&#x4F9B;&#x65B9;&#x4E00;&#x6837;&#xFF0C;&#x5B9E;&#x9645;&#x4E0A;&#x5E76;&#x672A;&#x5B9E;&#x73B0; OPTIONS &#x65B9;&#x6CD5;&#x3002;&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x607C;&#x4EBA;&#x7684;&#x758F;&#x5FFD;&#xFF0C;&#x4F46;&#x6CA1;&#x5173;&#x7CFB;&#xFF0C;&#x90A3;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x67AF;&#x71E5;&#x7684;&#x6587;&#x6863;&#x3002;&#x7136;&#x800C;&#xFF0C;&#x5982;&#x679C; GitHub &#x6B63;&#x786E;&#x5B9E;&#x73B0;&#x4E86; OPTIONS&#xFF0C;&#x90A3;&#x4E48;&#x670D;&#x52A1;&#x5668;&#x5E94;&#x8BE5;&#x5728;&#x54CD;&#x5E94;&#x5934;&#x4E2D;&#x8FD4;&#x56DE;&#x5141;&#x8BB8;&#x7528;&#x6237;&#x4F7F;&#x7528;&#x7684; HTTP &#x65B9;&#x6CD5;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;</p>
-<p>verbs = requests.options(&apos;<a href="http://a-good-website.com/api/cats" target="_blank">http://a-good-website.com/api/cats</a>&apos;)
-print verbs.headers[&apos;allow&apos;]
+application/json; charset=utf<span class="hljs-number">-8</span>
+</code></pre>
+<p>&#x53EF;&#x89C1;&#xFF0C;GitHub&#x8FD4;&#x56DE;&#x4E86;JSON&#x6570;&#x636E;&#xFF0C;&#x975E;&#x5E38;&#x597D;&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;r.json&#x65B9;&#x6CD5;&#x628A;&#x8FD9;&#x4E2A;&#x8FD4;&#x56DE;&#x7684;&#x6570;&#x636E;&#x89E3;&#x6790;&#x6210;Python&#x5BF9;&#x8C61;&#x3002;</p>
+<pre><code class="lang-python"><span class="hljs-meta">&gt;&gt;&gt; </span>commit_data = r.json()
+
+<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">print</span> commit_data.keys()
+[<span class="hljs-string">u&apos;committer&apos;</span>, <span class="hljs-string">u&apos;author&apos;</span>, <span class="hljs-string">u&apos;url&apos;</span>, <span class="hljs-string">u&apos;tree&apos;</span>, <span class="hljs-string">u&apos;sha&apos;</span>, <span class="hljs-string">u&apos;parents&apos;</span>, <span class="hljs-string">u&apos;message&apos;</span>]
+
+<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">print</span> commit_data[<span class="hljs-string">u&apos;committer&apos;</span>]
+{<span class="hljs-string">u&apos;date&apos;</span>: <span class="hljs-string">u&apos;2012-05-10T11:10:50-07:00&apos;</span>, <span class="hljs-string">u&apos;email&apos;</span>: <span class="hljs-string">u&apos;me@kennethreitz.com&apos;</span>, <span class="hljs-string">u&apos;name&apos;</span>: <span class="hljs-string">u&apos;Kenneth Reitz&apos;</span>}
+
+<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">print</span> commit_data[<span class="hljs-string">u&apos;message&apos;</span>]
+makin history
+</code></pre>
+<p>&#x7814;&#x7A76;&#x4E00;&#x4E0B;GitHub&#x7684;API&#x6587;&#x6863;. &#x53EF;&#x4EE5;&#x501F;&#x52A9; Requests &#x7684; OPTIONS &#x52A8;&#x8BCD;&#x6765;&#x67E5;&#x770B;&#x521A;&#x4F7F;&#x7528;&#x8FC7;&#x7684; url &#x652F;&#x6301;&#x54EA;&#x4E9B; HTTP &#x65B9;&#x6CD5;&#x3002;</p>
+<pre><code class="lang-python"><span class="hljs-meta">&gt;&gt;&gt; </span>verbs = requests.options(r.url)
+<span class="hljs-meta">&gt;&gt;&gt; </span>verbs.status_code
+<span class="hljs-number">500</span>
+</code></pre>
+<p>GitHub&#x4E0E;&#x8BB8;&#x591A; API &#x63D0;&#x4F9B;&#x65B9;&#x4E00;&#x6837;&#xFF0C;&#x5B9E;&#x9645;&#x4E0A;&#x5E76;&#x672A;&#x5B9E;&#x73B0; OPTIONS &#x65B9;&#x6CD5;&#x3002;&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x607C;&#x4EBA;&#x7684;&#x758F;&#x5FFD;&#xFF0C;&#x4F46;&#x6CA1;&#x5173;&#x7CFB;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x67AF;&#x71E5;&#x7684;&#x6587;&#x6863;&#x3002;&#x7136;&#x800C;&#xFF0C;&#x5982;&#x679C; GitHub &#x6B63;&#x786E;&#x5B9E;&#x73B0;&#x4E86; OPTIONS&#xFF0C;&#x90A3;&#x4E48;&#x670D;&#x52A1;&#x5668;&#x5E94;&#x8BE5;&#x5728;&#x54CD;&#x5E94;&#x5934;&#x4E2D;&#x8FD4;&#x56DE;&#x5141;&#x8BB8;&#x7528;&#x6237;&#x4F7F;&#x7528;&#x7684; HTTP &#x65B9;&#x6CD5;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;</p>
+<pre><code class="lang-python"><span class="hljs-meta">&gt;&gt;&gt; </span>verbs = requests.options(<span class="hljs-string">&apos;http://a-good-website.com/api/cats&apos;</span>)
+<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">print</span> verbs.headers[<span class="hljs-string">&apos;allow&apos;</span>]
 GET,HEAD,POST,OPTIONS
-&#x8F6C;&#x800C;&#x53BB;&#x67E5;&#x770B;&#x6587;&#x6863;&#xFF0C;&#x770B;&#x5230;&#x5BF9;&#x4E8E;&#x63D0;&#x4EA4;&#x4FE1;&#x606F;&#xFF0C;&#x53E6;&#x4E00;&#x4E2A;&#x5141;&#x8BB8;&#x7684;&#x65B9;&#x6CD5;&#x662F; POST&#xFF0C;&#x5B83;&#x4F1A;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x63D0;&#x4EA4;&#x3002;&#x7531;&#x4E8E;&#x6B63;&#x5728;&#x4F7F;&#x7528; Requests &#x4EE3;&#x7801;&#x5E93;&#xFF0C;&#x5E94;&#x5C3D;&#x53EF;&#x80FD;&#x907F;&#x514D;&#x5BF9;&#x5B83;&#x53D1;&#x9001;&#x7B28;&#x62D9;&#x7684; POST&#x3002;&#x4F5C;&#x4E3A;&#x66FF;&#x4EE3;&#xFF0C;&#x6765;&#x73A9;&#x73A9; GitHub &#x7684; Issue &#x7279;&#x6027;&#x3002;</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<p>&#x672C;&#x7BC7;&#x6587;&#x6863;&#x662F;&#x56DE;&#x5E94; <a href="https://github.com/requests/requests/issues/482" target="_blank">Issue #482</a> &#x800C;&#x6DFB;&#x52A0;&#x7684;&#x3002;&#x9274;&#x4E8E;&#x8BE5;&#x95EE;&#x9898;&#x5DF2;&#x7ECF;&#x5B58;&#x5728;&#xFF0C;&#x5C31;&#x4EE5;&#x5B83;&#x4E3A;&#x4F8B;&#x3002;&#x5148;&#x83B7;&#x53D6;&#x5B83;&#x3002;</p>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>r = requests.get(&apos;<a href="https://api.github.com/requests/kennethreitz/requests/issues/482" target="_blank">https://api.github.com/requests/kennethreitz/requests/issues/482</a>&apos;)
-r.status_code
-200</p>
-<p>issue = json.loads(r.text)</p>
-<p>print(issue[u&apos;title&apos;])
-Feature any http verb in docs</p>
-<p>print(issue[u&apos;comments&apos;])
-3
-Cool&#xFF0C;&#x6709; 3 &#x4E2A;&#x8BC4;&#x8BBA;&#x3002;&#x6765;&#x770B;&#x4E00;&#x4E0B;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x8BC4;&#x8BBA;&#x3002;</p>
-<p>r = requests.get(r.url + u&apos;/comments&apos;)
-r.status_code
-200
-comments = r.json()
-print comments[0].keys()
-[u&apos;body&apos;, u&apos;url&apos;, u&apos;created_at&apos;, u&apos;updated_at&apos;, u&apos;user&apos;, u&apos;id&apos;]
-print comments[2][u&apos;body&apos;]
-Probably in the &quot;advanced&quot; section
-&#x55EF;&#xFF0C;&#x90A3;&#x770B;&#x8D77;&#x6765;&#x4F3C;&#x4E4E;&#x662F;&#x4E2A;&#x611A;&#x8822;&#x4E4B;&#x5904;&#x3002;&#x53D1;&#x8868;&#x4E2A;&#x8BC4;&#x8BBA;&#x6765;&#x544A;&#x8BC9;&#x8FD9;&#x4E2A;&#x8BC4;&#x8BBA;&#x8005;&#x4ED6;&#x81EA;&#x5DF1;&#x7684;&#x611A;&#x8822;&#x3002;&#x90A3;&#x4E48;&#xFF0C;&#x8FD9;&#x4E2A;&#x8BC4;&#x8BBA;&#x8005;&#x662F;&#x8C01;&#x5462;&#xFF1F;</p>
-<p>print comments[2][u&apos;user&apos;][u&apos;login&apos;]
+</code></pre>
+<p>&#x8F6C;&#x800C;&#x53BB;&#x67E5;&#x770B;&#x6587;&#x6863;&#xFF0C;&#x770B;&#x5230;&#x5BF9;&#x4E8E;&#x63D0;&#x4EA4;&#x4FE1;&#x606F;&#xFF0C;&#x53E6;&#x4E00;&#x4E2A;&#x5141;&#x8BB8;&#x7684;&#x65B9;&#x6CD5;&#x662F; POST&#xFF0C;&#x5B83;&#x4F1A;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x63D0;&#x4EA4;&#x3002;&#x7531;&#x4E8E;&#x6B63;&#x5728;&#x4F7F;&#x7528; Requests &#x4EE3;&#x7801;&#x5E93;&#xFF0C;&#x5E94;&#x5C3D;&#x53EF;&#x80FD;&#x907F;&#x514D;&#x5BF9;&#x5B83;&#x53D1;&#x9001;&#x7B28;&#x62D9;&#x7684; POST&#x3002;&#x4F5C;&#x4E3A;&#x66FF;&#x4EE3;&#xFF0C;&#x6765;&#x73A9;&#x73A9; GitHub &#x7684; Issue &#x7279;&#x6027;&#x3002;</p>
+<p><a href="https://github.com/requests/requests/issues/482" target="_blank">Issue #482</a>, &#x9274;&#x4E8E;&#x8BE5;&#x95EE;&#x9898;&#x5DF2;&#x7ECF;&#x5B58;&#x5728;&#xFF0C;&#x5C31;&#x4EE5;&#x5B83;&#x4E3A;&#x4F8B;&#x3002;&#x5148;&#x83B7;&#x53D6;&#x5B83;&#x3002;</p>
+<pre><code class="lang-python"><span class="hljs-meta">&gt;&gt;&gt; </span>r = requests.get(<span class="hljs-string">&apos;https://api.github.com/requests/kennethreitz/requests/issues/482&apos;</span>)
+<span class="hljs-meta">&gt;&gt;&gt; </span>r.status_code
+<span class="hljs-number">200</span>
+
+<span class="hljs-meta">&gt;&gt;&gt; </span>issue = json.loads(r.text)
+
+<span class="hljs-meta">&gt;&gt;&gt; </span>print(issue[<span class="hljs-string">u&apos;title&apos;</span>])
+Feature any http verb <span class="hljs-keyword">in</span> docs
+
+<span class="hljs-meta">&gt;&gt;&gt; </span>print(issue[<span class="hljs-string">u&apos;comments&apos;</span>])
+<span class="hljs-number">3</span>
+</code></pre>
+<p>Cool&#xFF0C;&#x6709; 3 &#x4E2A;&#x8BC4;&#x8BBA;&#x3002;&#x6765;&#x770B;&#x4E00;&#x4E0B;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x8BC4;&#x8BBA;&#x3002;</p>
+<pre><code class="lang-python"><span class="hljs-meta">&gt;&gt;&gt; </span>r = requests.get(r.url + <span class="hljs-string">u&apos;/comments&apos;</span>)
+<span class="hljs-meta">&gt;&gt;&gt; </span>r.status_code
+<span class="hljs-number">200</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span>comments = r.json()
+<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">print</span> comments[<span class="hljs-number">0</span>].keys()
+[<span class="hljs-string">u&apos;body&apos;</span>, <span class="hljs-string">u&apos;url&apos;</span>, <span class="hljs-string">u&apos;created_at&apos;</span>, <span class="hljs-string">u&apos;updated_at&apos;</span>, <span class="hljs-string">u&apos;user&apos;</span>, <span class="hljs-string">u&apos;id&apos;</span>]
+<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">print</span> comments[<span class="hljs-number">2</span>][<span class="hljs-string">u&apos;body&apos;</span>]
+Probably <span class="hljs-keyword">in</span> the <span class="hljs-string">&quot;advanced&quot;</span> section
+</code></pre>
+<p>&#x55EF;&#xFF0C;&#x90A3;&#x770B;&#x8D77;&#x6765;&#x4F3C;&#x4E4E;&#x662F;&#x4E2A;&#x611A;&#x8822;&#x7684;&#x8BC4;&#x8BBA;&#x3002;&#x53D1;&#x8868;&#x4E2A;&#x8BC4;&#x8BBA;&#x6765;&#x544A;&#x8BC9;&#x8FD9;&#x4E2A;&#x8BC4;&#x8BBA;&#x8005;&#x4ED6;&#x81EA;&#x5DF1;&#x7684;&#x611A;&#x8822;&#x3002;&#x90A3;&#x4E48;&#xFF0C;&#x8FD9;&#x4E2A;&#x8BC4;&#x8BBA;&#x8005;&#x662F;&#x8C01;&#x5462;&#xFF1F;</p>
+<pre><code class="lang-python"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">print</span> comments[<span class="hljs-number">2</span>][<span class="hljs-string">u&apos;user&apos;</span>][<span class="hljs-string">u&apos;login&apos;</span>]
 kennethreitz
-&#x597D;&#xFF0C;&#x6765;&#x544A;&#x8BC9;&#x8FD9;&#x4E2A;&#x53EB; Kenneth &#x7684;&#x5BB6;&#x4F19;&#xFF0C;&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#x5E94;&#x8BE5;&#x653E;&#x5728;&#x5FEB;&#x901F;&#x4E0A;&#x624B;&#x6307;&#x5357;&#x4E2D;&#x3002;&#x6839;&#x636E; GitHub API &#x6587;&#x6863;&#xFF0C;&#x5176;&#x65B9;&#x6CD5;&#x662F; POST &#x5230;&#x8BE5;&#x8BDD;&#x9898;&#x3002;&#x6765;&#x8BD5;&#x8BD5;&#x770B;&#x3002;</p>
-<p>body = json.dumps({u&quot;body&quot;: u&quot;Sounds great! I&apos;ll get right on it!&quot;})
-url = u&quot;<a href="https://api.github.com/repos/requests/requests/issues/482/comments" target="_blank">https://api.github.com/repos/requests/requests/issues/482/comments</a>&quot;</p>
-<p>r = requests.post(url=url, data=body)
-r.status_code
-404
-&#x989D;&#xFF0C;&#x8FD9;&#x6709;&#x70B9;&#x53E4;&#x602A;&#x54C8;&#x3002;&#x53EF;&#x80FD;&#x9700;&#x8981;&#x9A8C;&#x8BC1;&#x8EAB;&#x4EFD;&#x3002;&#x90A3;&#x5C31;&#x6709;&#x70B9;&#x7EA0;&#x7ED3;&#x4E86;&#xFF0C;&#x5BF9;&#x5427;&#xFF1F;&#x4E0D;&#x5BF9;&#x3002;Requests &#x7B80;&#x5316;&#x4E86;&#x591A;&#x79CD;&#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;&#x5F62;&#x5F0F;&#x7684;&#x4F7F;&#x7528;&#xFF0C;&#x5305;&#x62EC;&#x975E;&#x5E38;&#x5E38;&#x89C1;&#x7684; Basic Auth&#x3002;</p>
-<p>from requests.auth import HTTPBasicAuth
-auth = HTTPBasicAuth(&apos;fake@example.com&apos;, &apos;not_a_real_password&apos;)</p>
-<p>r = requests.post(url=url, data=body, auth=auth)
-r.status_code
-201</p>
-<p>content = r.json()
-print(content[u&apos;body&apos;])
+</code></pre>
+<p>&#x597D;&#xFF0C;&#x6765;&#x544A;&#x8BC9;&#x8FD9;&#x4E2A;&#x53EB; Kenneth &#x7684;&#x5BB6;&#x4F19;&#xFF0C;&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#x5E94;&#x8BE5;&#x653E;&#x5728;&#x5FEB;&#x901F;&#x4E0A;&#x624B;&#x6307;&#x5357;&#x4E2D;&#x3002;&#x6839;&#x636E; GitHub API &#x6587;&#x6863;&#xFF0C;&#x5176;&#x65B9;&#x6CD5;&#x662F; POST &#x5230;&#x8BE5;&#x8BDD;&#x9898;&#x3002;&#x6765;&#x8BD5;&#x8BD5;&#x770B;&#x3002;</p>
+<pre><code class="lang-python"><span class="hljs-meta">&gt;&gt;&gt; </span>body = json.dumps({<span class="hljs-string">u&quot;body&quot;</span>: <span class="hljs-string">u&quot;Sounds great! I&apos;ll get right on it!&quot;</span>})
+<span class="hljs-meta">&gt;&gt;&gt; </span>url = <span class="hljs-string">u&quot;https://api.github.com/repos/requests/requests/issues/482/comments&quot;</span>
+
+<span class="hljs-meta">&gt;&gt;&gt; </span>r = requests.post(url=url, data=body)
+<span class="hljs-meta">&gt;&gt;&gt; </span>r.status_code
+<span class="hljs-number">404</span>
+</code></pre>
+<p>&#x53EF;&#x80FD;&#x9700;&#x8981;&#x9A8C;&#x8BC1;&#x8EAB;&#x4EFD;&#x3002;&#x90A3;&#x5C31;&#x6709;&#x70B9;&#x7EA0;&#x7ED3;&#x4E86;&#x3002;Requests &#x7B80;&#x5316;&#x4E86;&#x591A;&#x79CD;&#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;&#x5F62;&#x5F0F;&#x7684;&#x4F7F;&#x7528;&#xFF0C;&#x5305;&#x62EC;&#x975E;&#x5E38;&#x5E38;&#x89C1;&#x7684;Basic Auth&#x3002;</p>
+<pre><code class="lang-python">&gt;&gt;&gt; from requests.auth import HTTPBasicAuth
+&gt;&gt;&gt; auth = HTTPBasicAuth(&apos;fake@example.com&apos;, &apos;not_a_real_password&apos;)
+
+&gt;&gt;&gt; r = requests.post(url=url, data=body, auth=auth)
+&gt;&gt;&gt; r.status_code
+201
+
+&gt;&gt;&gt; content = r.json()
+&gt;&gt;&gt; print(content[u&apos;body&apos;])
 Sounds great! I&apos;ll get right on it.
-&#x592A;&#x68D2;&#x4E86;&#xFF01;&#x5662;&#xFF0C;&#x4E0D;&#xFF01;&#x539F;&#x672C;&#x662F;&#x60F3;&#x8BF4;&#x7B49;&#x4E00;&#x4F1A;&#xFF0C;&#x56E0;&#x4E3A;&#x5F97;&#x53BB;&#x5582;&#x7684;&#x732B;&#x3002;&#x5982;&#x679C;&#x80FD;&#x591F;&#x7F16;&#x8F91;&#x8FD9;&#x6761;&#x8BC4;&#x8BBA;&#x90A3;&#x5C31;&#x597D;&#x4E86;&#xFF01;&#x5E78;&#x8FD0;&#x7684;&#x662F;&#xFF0C;GitHub &#x5141;&#x8BB8;&#x4F7F;&#x7528;&#x53E6;&#x4E00;&#x4E2A; HTTP &#x52A8;&#x8BCD; PATCH &#x6765;&#x7F16;&#x8F91;&#x8BC4;&#x8BBA;&#x3002;&#x6765;&#x8BD5;&#x8BD5;&#x3002;</p>
-<p>print(content[u&quot;id&quot;])
-5804413</p>
-<p>body = json.dumps({u&quot;body&quot;: u&quot;Sounds great! I&apos;ll get right on it once I feed my cat.&quot;})
-url = u&quot;<a href="https://api.github.com/repos/requests/requests/issues/comments/5804413" target="_blank">https://api.github.com/repos/requests/requests/issues/comments/5804413</a>&quot;</p>
-<p>r = requests.patch(url=url, data=body, auth=auth)
-r.status_code
-200
-&#x975E;&#x5E38;&#x597D;&#x3002;&#x73B0;&#x5728;&#xFF0C;&#x6765;&#x6298;&#x78E8;&#x4E00;&#x4E0B;&#x8FD9;&#x4E2A;&#x53EB; Kenneth &#x7684;&#x5BB6;&#x4F19;&#xFF0C;&#x51B3;&#x5B9A;&#x8981;&#x8BA9;&#x4ED6;&#x6025;&#x5F97;&#x56E2;&#x56E2;&#x8F6C;&#xFF0C;&#x4E5F;&#x4E0D;&#x544A;&#x8BC9;&#x4ED6;&#x662F;&#x5728;&#x6363;&#x86CB;&#x3002;&#x8FD9;&#x610F;&#x5473;&#x7740;&#x60F3;&#x5220;&#x9664;&#x8FD9;&#x6761;&#x8BC4;&#x8BBA;&#x3002;GitHub &#x5141;&#x8BB8;&#x4F7F;&#x7528;&#x5B8C;&#x5168;&#x540D;&#x526F;&#x5176;&#x5B9E;&#x7684; DELETE &#x65B9;&#x6CD5;&#x6765;&#x5220;&#x9664;&#x8BC4;&#x8BBA;&#x3002;&#x6765;&#x6E05;&#x9664;&#x8BE5;&#x8BC4;&#x8BBA;&#x3002;</p>
-<p>r = requests.delete(url=url, auth=auth)
-r.status_code
-204
-r.headers[&apos;status&apos;]
-&apos;204 No Content&apos;
-&#x5F88;&#x597D;&#x3002;&#x4E0D;&#x89C1;&#x4E86;&#x3002;&#x6700;&#x540E;&#x4E00;&#x4EF6;&#x60F3;&#x77E5;&#x9053;&#x7684;&#x4E8B;&#x60C5;&#x662F;&#x5DF2;&#x7ECF;&#x4F7F;&#x7528;&#x4E86;&#x591A;&#x5C11;&#x9650;&#x989D;&#xFF08;ratelimit&#xFF09;&#x3002;&#x67E5;&#x67E5;&#x770B;&#xFF0C;GitHub &#x5728;&#x54CD;&#x5E94;&#x5934;&#x90E8;&#x53D1;&#x9001;&#x8FD9;&#x4E2A;&#x4FE1;&#x606F;&#xFF0C;&#x56E0;&#x6B64;&#x4E0D;&#x5FC5;&#x4E0B;&#x8F7D;&#x6574;&#x4E2A;&#x7F51;&#x9875;&#xFF0C;&#x5C06;&#x4F7F;&#x7528;&#x4E00;&#x4E2A; HEAD &#x8BF7;&#x6C42;&#x6765;&#x83B7;&#x53D6;&#x54CD;&#x5E94;&#x5934;&#x3002;</p>
-<p>r = requests.head(url=url, auth=auth)
-print r.headers
+</code></pre>
+<p>&#x5982;&#x679C;&#x80FD;&#x591F;&#x7F16;&#x8F91;&#x8FD9;&#x6761;&#x8BC4;&#x8BBA;&#x90A3;&#x5C31;&#x597D;&#x4E86;&#xFF01;&#x5E78;&#x8FD0;&#x7684;&#x662F;&#xFF0C;GitHub &#x5141;&#x8BB8;&#x4F7F;&#x7528;&#x53E6;&#x4E00;&#x4E2A; HTTP &#x52A8;&#x8BCD; PATCH &#x6765;&#x7F16;&#x8F91;&#x8BC4;&#x8BBA;&#x3002;&#x6765;&#x8BD5;&#x8BD5;&#x3002;</p>
+<pre><code class="lang-python"><span class="hljs-meta">&gt;&gt;&gt; </span>print(content[<span class="hljs-string">u&quot;id&quot;</span>])
+<span class="hljs-number">5804413</span>
+
+<span class="hljs-meta">&gt;&gt;&gt; </span>body = json.dumps({<span class="hljs-string">u&quot;body&quot;</span>: <span class="hljs-string">u&quot;Sounds great! I&apos;ll get right on it once I feed my cat.&quot;</span>})
+<span class="hljs-meta">&gt;&gt;&gt; </span>url = <span class="hljs-string">u&quot;https://api.github.com/repos/requests/requests/issues/comments/5804413&quot;</span>
+
+<span class="hljs-meta">&gt;&gt;&gt; </span>r = requests.patch(url=url, data=body, auth=auth)
+<span class="hljs-meta">&gt;&gt;&gt; </span>r.status_code
+<span class="hljs-number">200</span>
+</code></pre>
+<p>GitHub &#x5141;&#x8BB8;&#x4F7F;&#x7528;&#x5B8C;&#x5168;&#x540D;&#x526F;&#x5176;&#x5B9E;&#x7684; DELETE &#x65B9;&#x6CD5;&#x6765;&#x5220;&#x9664;&#x8BC4;&#x8BBA;&#x3002;</p>
+<pre><code class="lang-python"><span class="hljs-meta">&gt;&gt;&gt; </span>r = requests.delete(url=url, auth=auth)
+<span class="hljs-meta">&gt;&gt;&gt; </span>r.status_code
+<span class="hljs-number">204</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span>r.headers[<span class="hljs-string">&apos;status&apos;</span>]
+<span class="hljs-string">&apos;204 No Content&apos;</span>
+</code></pre>
+<p>&#x5F88;&#x597D;&#x3002;&#x4E0D;&#x89C1;&#x4E86;&#x3002;&#x6700;&#x540E;&#x4E00;&#x4EF6;&#x60F3;&#x77E5;&#x9053;&#x7684;&#x4E8B;&#x60C5;&#x662F;&#x5DF2;&#x7ECF;&#x4F7F;&#x7528;&#x4E86;&#x591A;&#x5C11;&#x9650;&#x989D;&#xFF08;ratelimit&#xFF09;&#x3002;&#x67E5;&#x67E5;&#x770B;&#xFF0C;GitHub&#x5728;&#x54CD;&#x5E94;&#x5934;&#x90E8;&#x53D1;&#x9001;&#x8FD9;&#x4E2A;&#x4FE1;&#x606F;&#xFF0C;&#x56E0;&#x6B64;&#x4E0D;&#x5FC5;&#x4E0B;&#x8F7D;&#x6574;&#x4E2A;&#x7F51;&#x9875;&#xFF0C;&#x5C06;&#x4F7F;&#x7528;&#x4E00;&#x4E2A;HEAD&#x8BF7;&#x6C42;&#x6765;&#x83B7;&#x53D6;&#x54CD;&#x5E94;&#x5934;&#x3002;</p>
+<pre><code class="lang-python"><span class="hljs-meta">&gt;&gt;&gt; </span>r = requests.head(url=url, auth=auth)
+<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">print</span> r.headers
 ...
-&apos;x-ratelimit-remaining&apos;: &apos;4995&apos;
-&apos;x-ratelimit-limit&apos;: &apos;5000&apos;
+<span class="hljs-string">&apos;x-ratelimit-remaining&apos;</span>: <span class="hljs-string">&apos;4995&apos;</span>
+<span class="hljs-string">&apos;x-ratelimit-limit&apos;</span>: <span class="hljs-string">&apos;5000&apos;</span>
 ...
-&#x5F88;&#x597D;&#x3002;&#x662F;&#x65F6;&#x5019;&#x5199;&#x4E2A; Python &#x7A0B;&#x5E8F;&#x4EE5;&#x5404;&#x79CD;&#x523A;&#x6FC0;&#x7684;&#x65B9;&#x5F0F;&#x6EE5;&#x7528; GitHub &#x7684; API&#xFF0C;&#x8FD8;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; 4995 &#x6B21;&#x5462;&#x3002;</p>
-</blockquote>
-</blockquote>
-</blockquote>
+</code></pre>
+<p>&#x5F88;&#x597D;&#x3002;&#x662F;&#x65F6;&#x5019;&#x5199;&#x4E2A; Python &#x7A0B;&#x5E8F;&#x4EE5;&#x5404;&#x79CD;&#x523A;&#x6FC0;&#x7684;&#x65B9;&#x5F0F;&#x6EE5;&#x7528; GitHub &#x7684; API&#xFF0C;&#x8FD8;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; 4995 &#x6B21;&#x5462;&#x3002;</p>
 <h3 id="&#x5B9A;&#x5236;&#x52A8;&#x8BCD;">&#x5B9A;&#x5236;&#x52A8;&#x8BCD;</h3>
-<p>&#x6709;&#x65F6;&#x5019;&#x4F1A;&#x78B0;&#x5230;&#x4E00;&#x4E9B;&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x5904;&#x4E8E;&#x67D0;&#x4E9B;&#x539F;&#x56E0;&#xFF0C;&#x5B83;&#x4EEC;&#x5141;&#x8BB8;&#x6216;&#x8005;&#x8981;&#x6C42;&#x7528;&#x6237;&#x4F7F;&#x7528;&#x4E0A;&#x8FF0; HTTP &#x52A8;&#x8BCD;&#x4E4B;&#x5916;&#x7684;&#x5B9A;&#x5236;&#x52A8;&#x8BCD;&#x3002;&#x6BD4;&#x5982;&#x8BF4; WEBDAV &#x670D;&#x52A1;&#x5668;&#x4F1A;&#x8981;&#x6C42;&#x4F7F;&#x7528; MKCOL &#x65B9;&#x6CD5;&#x3002;&#x522B;&#x62C5;&#x5FC3;&#xFF0C;Requests &#x4E00;&#x6837;&#x53EF;&#x4EE5;&#x641E;&#x5B9A;&#x5B83;&#x4EEC;&#x3002;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5185;&#x5EFA;&#x7684; .request &#x65B9;&#x6CD5;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;</p>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>r = requests.request(&apos;MKCOL&apos;, url, data=data)
-r.status_code
-200 # Assuming your call was correct
-&#x8FD9;&#x6837;&#x5C31;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x670D;&#x52A1;&#x5668;&#x8981;&#x6C42;&#x7684;&#x4EFB;&#x610F;&#x65B9;&#x6CD5;&#x52A8;&#x8BCD;&#x4E86;&#x3002;</p>
-</blockquote>
-</blockquote>
-</blockquote>
+<p>&#x6709;&#x65F6;&#x5019;&#x4F1A;&#x78B0;&#x5230;&#x4E00;&#x4E9B;&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x5904;&#x4E8E;&#x67D0;&#x4E9B;&#x539F;&#x56E0;&#xFF0C;&#x5B83;&#x4EEC;&#x5141;&#x8BB8;&#x6216;&#x8005;&#x8981;&#x6C42;&#x7528;&#x6237;&#x4F7F;&#x7528;&#x4E0A;&#x8FF0;HTTP&#x52A8;&#x8BCD;&#x4E4B;&#x5916;&#x7684;&#x5B9A;&#x5236;&#x52A8;&#x8BCD;&#x3002;&#x6BD4;&#x5982;&#x8BF4;WEBDAV&#x670D;&#x52A1;&#x5668;&#x4F1A;&#x8981;&#x6C42;&#x4F7F;&#x7528;MKCOL&#x65B9;&#x6CD5;&#x3002;&#x522B;&#x62C5;&#x5FC3;&#xFF0C;Requests&#x4E00;&#x6837;&#x53EF;&#x4EE5;&#x641E;&#x5B9A;&#x5B83;&#x4EEC;&#x3002;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5185;&#x5EFA;&#x7684;<code>.request</code>&#x65B9;&#x6CD5;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;</p>
+<pre><code class="lang-python"><span class="hljs-meta">&gt;&gt;&gt; </span>r = requests.request(<span class="hljs-string">&apos;MKCOL&apos;</span>, url, data=data)
+<span class="hljs-meta">&gt;&gt;&gt; </span>r.status_code
+<span class="hljs-number">200</span> <span class="hljs-comment"># Assuming your call was correct</span>
+</code></pre>
+<p>&#x8FD9;&#x6837;&#x5C31;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x670D;&#x52A1;&#x5668;&#x8981;&#x6C42;&#x7684;&#x4EFB;&#x610F;&#x65B9;&#x6CD5;&#x52A8;&#x8BCD;&#x4E86;&#x3002;</p>
 <h3 id="&#x54CD;&#x5E94;&#x5934;&#x94FE;&#x63A5;&#x5B57;&#x6BB5;">&#x54CD;&#x5E94;&#x5934;&#x94FE;&#x63A5;&#x5B57;&#x6BB5;</h3>
-<p>&#x8BB8;&#x591A; HTTP API &#x90FD;&#x6709;&#x54CD;&#x5E94;&#x5934;&#x94FE;&#x63A5;&#x5B57;&#x6BB5;&#x7684;&#x7279;&#x6027;&#xFF0C;&#x5B83;&#x4EEC;&#x4F7F;&#x5F97; API &#x80FD;&#x591F;&#x66F4;&#x597D;&#x5730;&#x81EA;&#x63CF;&#x8FF0;&#x548C;&#x81EA;&#x663E;&#x9732;&#x3002;</p>
-<p>GitHub &#x5728; API &#x4E2D;&#x4E3A; <a href="http://developer.github.com/v3/#pagination" target="_blank">&#x5206;&#x9875;</a> &#x4F7F;&#x7528;&#x8FD9;&#x4E9B;&#x7279;&#x6027;&#xFF0C;&#x4F8B;&#x5982;:</p>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>url = &apos;<a href="https://api.github.com/users/kennethreitz/repos?page=1&amp;per_page=10" target="_blank">https://api.github.com/users/kennethreitz/repos?page=1&amp;per_page=10</a>&apos;
-r = requests.head(url=url)
-r.headers[&apos;link&apos;]
-&apos;<a href="https://api.github.com/users/kennethreitz/repos?page=2&amp;per_page=10" target="_blank">https://api.github.com/users/kennethreitz/repos?page=2&amp;per_page=10</a>; rel=&quot;next&quot;, <a href="https://api.github.com/users/kennethreitz/repos?page=6&amp;per_page=10" target="_blank">https://api.github.com/users/kennethreitz/repos?page=6&amp;per_page=10</a>; rel=&quot;last&quot;&apos;
-Requests &#x4F1A;&#x81EA;&#x52A8;&#x89E3;&#x6790;&#x8FD9;&#x4E9B;&#x54CD;&#x5E94;&#x5934;&#x94FE;&#x63A5;&#x5B57;&#x6BB5;&#xFF0C;&#x5E76;&#x4F7F;&#x5F97;&#x5B83;&#x4EEC;&#x975E;&#x5E38;&#x6613;&#x4E8E;&#x4F7F;&#x7528;:</p>
-<p>r.links[&quot;next&quot;]
-{&apos;url&apos;: &apos;<a href="https://api.github.com/users/kennethreitz/repos?page=2&amp;per_page=10" target="_blank">https://api.github.com/users/kennethreitz/repos?page=2&amp;per_page=10</a>&apos;, &apos;rel&apos;: &apos;next&apos;}</p>
-<p>r.links[&quot;last&quot;]
-{&apos;url&apos;: &apos;<a href="https://api.github.com/users/kennethreitz/repos?page=7&amp;per_page=10" target="_blank">https://api.github.com/users/kennethreitz/repos?page=7&amp;per_page=10</a>&apos;, &apos;rel&apos;: &apos;last&apos;}</p>
-</blockquote>
-</blockquote>
-</blockquote>
+<p>&#x8BB8;&#x591A;HTTP API&#x90FD;&#x6709;&#x54CD;&#x5E94;&#x5934;&#x94FE;&#x63A5;&#x5B57;&#x6BB5;&#x7684;&#x7279;&#x6027;&#xFF0C;&#x5B83;&#x4EEC;&#x4F7F;&#x5F97;API&#x80FD;&#x591F;&#x66F4;&#x597D;&#x5730;&#x81EA;&#x63CF;&#x8FF0;&#x548C;&#x81EA;&#x663E;&#x9732;&#x3002;</p>
+<p>GitHub&#x5728;API&#x4E2D;&#x4E3A;<a href="http://developer.github.com/v3/#pagination" target="_blank">&#x5206;&#x9875;</a>&#x4F7F;&#x7528;&#x8FD9;&#x4E9B;&#x7279;&#x6027;&#xFF0C;&#x4F8B;&#x5982;:</p>
+<pre><code class="lang-python"><span class="hljs-meta">&gt;&gt;&gt; </span>url = <span class="hljs-string">&apos;https://api.github.com/users/kennethreitz/repos?page=1&amp;per_page=10&apos;</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span>r = requests.head(url=url)
+<span class="hljs-meta">&gt;&gt;&gt; </span>r.headers[<span class="hljs-string">&apos;link&apos;</span>]
+<span class="hljs-string">&apos;&lt;https://api.github.com/users/kennethreitz/repos?page=2&amp;per_page=10&gt;; rel=&quot;next&quot;, &lt;https://api.github.com/users/kennethreitz/repos?page=6&amp;per_page=10&gt;; rel=&quot;last&quot;&apos;</span>
+</code></pre>
+<p>Requests &#x4F1A;&#x81EA;&#x52A8;&#x89E3;&#x6790;&#x8FD9;&#x4E9B;&#x54CD;&#x5E94;&#x5934;&#x94FE;&#x63A5;&#x5B57;&#x6BB5;&#xFF0C;&#x5E76;&#x4F7F;&#x5F97;&#x5B83;&#x4EEC;&#x975E;&#x5E38;&#x6613;&#x4E8E;&#x4F7F;&#x7528;:</p>
+<pre><code class="lang-python"><span class="hljs-meta">&gt;&gt;&gt; </span>r.links[<span class="hljs-string">&quot;next&quot;</span>]
+{<span class="hljs-string">&apos;url&apos;</span>: <span class="hljs-string">&apos;https://api.github.com/users/kennethreitz/repos?page=2&amp;per_page=10&apos;</span>, <span class="hljs-string">&apos;rel&apos;</span>: <span class="hljs-string">&apos;next&apos;</span>}
+
+<span class="hljs-meta">&gt;&gt;&gt; </span>r.links[<span class="hljs-string">&quot;last&quot;</span>]
+{<span class="hljs-string">&apos;url&apos;</span>: <span class="hljs-string">&apos;https://api.github.com/users/kennethreitz/repos?page=7&amp;per_page=10&apos;</span>, <span class="hljs-string">&apos;rel&apos;</span>: <span class="hljs-string">&apos;last&apos;</span>}
+</code></pre>
 <h3 id="&#x4F20;&#x8F93;&#x9002;&#x914D;&#x5668;">&#x4F20;&#x8F93;&#x9002;&#x914D;&#x5668;</h3>
-<p>&#x4ECE; v1.0.0 &#x4EE5;&#x540E;&#xFF0C;Requests &#x7684;&#x5185;&#x90E8;&#x91C7;&#x7528;&#x4E86;&#x6A21;&#x5757;&#x5316;&#x8BBE;&#x8BA1;&#x3002;&#x90E8;&#x5206;&#x539F;&#x56E0;&#x662F;&#x4E3A;&#x4E86;&#x5B9E;&#x73B0;&#x4F20;&#x8F93;&#x9002;&#x914D;&#x5668;&#xFF08;Transport Adapter&#xFF09;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x770B;&#x5173;&#x4E8E;&#x5B83;&#x7684;<a href="http://www.kennethreitz.org/essays/the-future-of-python-http" target="_blank">&#x6700;&#x65E9;&#x63CF;&#x8FF0;</a>&#x3002;&#x4F20;&#x8F93;&#x9002;&#x914D;&#x5668;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E2A;&#x673A;&#x5236;&#xFF0C;&#x8BA9;&#x53EF;&#x4EE5;&#x4E3A; HTTP &#x670D;&#x52A1;&#x5B9A;&#x4E49;&#x4EA4;&#x4E92;&#x65B9;&#x6CD5;&#x3002;&#x5C24;&#x5176;&#x662F;&#x5B83;&#x5141;&#x8BB8;&#x5E94;&#x7528;&#x670D;&#x52A1;&#x524D;&#x7684;&#x914D;&#x7F6E;&#x3002;</p>
-<p>Requests &#x81EA;&#x5E26;&#x4E86;&#x4E00;&#x4E2A;&#x4F20;&#x8F93;&#x9002;&#x914D;&#x5668;&#xFF0C;&#x4E5F;&#x5C31;&#x662F; <a href="http://cn.python-requests.org/zh_CN/latest/api.html#requests.adapters.HTTPAdapter" target="_blank">HTTPAdapter</a>&#x3002; &#x8FD9;&#x4E2A;&#x9002;&#x914D;&#x5668;&#x4F7F;&#x7528;&#x4E86;&#x5F3A;&#x5927;&#x7684; <a href="https://github.com/shazow/urllib3" target="_blank">urllib3</a>&#xFF0C;&#x4E3A; Requests &#x63D0;&#x4F9B;&#x4E86;&#x9ED8;&#x8BA4;&#x7684; HTTP &#x548C; HTTPS &#x4EA4;&#x4E92;&#x3002;&#x6BCF;&#x5F53; <a href="http://cn.python-requests.org/zh_CN/latest/api.html#requests.Session" target="_blank">Session</a> &#x88AB;&#x521D;&#x59CB;&#x5316;&#xFF0C;&#x5C31;&#x4F1A;&#x6709;&#x9002;&#x914D;&#x5668;&#x9644;&#x7740;&#x5728; <a href="http://cn.python-requests.org/zh_CN/latest/api.html#requests.Session" target="_blank">Session</a> &#x4E0A;&#xFF0C;&#x5176;&#x4E2D;&#x4E00;&#x4E2A;&#x4F9B; HTTP &#x4F7F;&#x7528;&#xFF0C;&#x53E6;&#x4E00;&#x4E2A;&#x4F9B; HTTPS &#x4F7F;&#x7528;&#x3002;</p>
+<p>&#x4ECE; v1.0.0 &#x4EE5;&#x540E;&#xFF0C;Requests&#x7684;&#x5185;&#x90E8;&#x91C7;&#x7528;&#x4E86;&#x6A21;&#x5757;&#x5316;&#x8BBE;&#x8BA1;&#x3002;&#x90E8;&#x5206;&#x539F;&#x56E0;&#x662F;&#x4E3A;&#x4E86;&#x5B9E;&#x73B0;&#x4F20;&#x8F93;&#x9002;&#x914D;&#x5668;&#xFF08;Transport Adapter&#xFF09;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x770B;&#x5173;&#x4E8E;&#x5B83;&#x7684;<a href="http://www.kennethreitz.org/essays/the-future-of-python-http" target="_blank">&#x6700;&#x65E9;&#x63CF;&#x8FF0;</a>&#x3002;&#x4F20;&#x8F93;&#x9002;&#x914D;&#x5668;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E2A;&#x673A;&#x5236;&#xFF0C;&#x8BA9;&#x53EF;&#x4EE5;&#x4E3A;HTTP&#x670D;&#x52A1;&#x5B9A;&#x4E49;&#x4EA4;&#x4E92;&#x65B9;&#x6CD5;&#x3002;&#x5C24;&#x5176;&#x662F;&#x5B83;&#x5141;&#x8BB8;&#x5E94;&#x7528;&#x670D;&#x52A1;&#x524D;&#x7684;&#x914D;&#x7F6E;&#x3002;</p>
+<p>Requests &#x81EA;&#x5E26;&#x4E86;&#x4E00;&#x4E2A;&#x4F20;&#x8F93;&#x9002;&#x914D;&#x5668;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;<a href="http://cn.python-requests.org/zh_CN/latest/api.html#requests.adapters.HTTPAdapter" target="_blank">HTTPAdapter</a>&#x3002; &#x8FD9;&#x4E2A;&#x9002;&#x914D;&#x5668;&#x4F7F;&#x7528;&#x4E86;&#x5F3A;&#x5927;&#x7684; <a href="https://github.com/shazow/urllib3" target="_blank">urllib3</a>&#xFF0C;&#x4E3A; Requests &#x63D0;&#x4F9B;&#x4E86;&#x9ED8;&#x8BA4;&#x7684; HTTP &#x548C; HTTPS &#x4EA4;&#x4E92;&#x3002;&#x6BCF;&#x5F53; <a href="http://cn.python-requests.org/zh_CN/latest/api.html#requests.Session" target="_blank">Session</a> &#x88AB;&#x521D;&#x59CB;&#x5316;&#xFF0C;&#x5C31;&#x4F1A;&#x6709;&#x9002;&#x914D;&#x5668;&#x9644;&#x7740;&#x5728; <a href="http://cn.python-requests.org/zh_CN/latest/api.html#requests.Session" target="_blank">Session</a> &#x4E0A;&#xFF0C;&#x5176;&#x4E2D;&#x4E00;&#x4E2A;&#x4F9B; HTTP &#x4F7F;&#x7528;&#xFF0C;&#x53E6;&#x4E00;&#x4E2A;&#x4F9B; HTTPS &#x4F7F;&#x7528;&#x3002;</p>
 <p>Request &#x5141;&#x8BB8;&#x7528;&#x6237;&#x521B;&#x5EFA;&#x548C;&#x4F7F;&#x7528;&#x4ED6;&#x4EEC;&#x81EA;&#x5DF1;&#x7684;&#x4F20;&#x8F93;&#x9002;&#x914D;&#x5668;&#xFF0C;&#x5B9E;&#x73B0;&#x4ED6;&#x4EEC;&#x9700;&#x8981;&#x7684;&#x7279;&#x6B8A;&#x529F;&#x80FD;&#x3002;&#x521B;&#x5EFA;&#x597D;&#x4EE5;&#x540E;&#xFF0C;&#x4F20;&#x8F93;&#x9002;&#x914D;&#x5668;&#x53EF;&#x4EE5;&#x88AB;&#x52A0;&#x8F7D;&#x5230;&#x4E00;&#x4E2A;&#x4F1A;&#x8BDD;&#x5BF9;&#x8C61;&#x4E0A;&#xFF0C;&#x9644;&#x5E26;&#x7740;&#x4E00;&#x4E2A;&#x8BF4;&#x660E;&#xFF0C;&#x544A;&#x8BC9;&#x4F1A;&#x8BDD;&#x9002;&#x914D;&#x5668;&#x5E94;&#x8BE5;&#x5E94;&#x7528;&#x5728;&#x54EA;&#x4E2A; web &#x670D;&#x52A1;&#x4E0A;&#x3002;</p>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>s = requests.Session()
-s.mount(&apos;<a href="http://www.github.com" target="_blank">http://www.github.com</a>&apos;, MyAdapter())
-&#x8FD9;&#x4E2A; mount &#x8C03;&#x7528;&#x4F1A;&#x6CE8;&#x518C;&#x4E00;&#x4E2A;&#x4F20;&#x8F93;&#x9002;&#x914D;&#x5668;&#x7684;&#x7279;&#x5B9A;&#x5B9E;&#x4F8B;&#x5230;&#x4E00;&#x4E2A;&#x524D;&#x7F00;&#x4E0A;&#x9762;&#x3002;&#x52A0;&#x8F7D;&#x4EE5;&#x540E;&#xFF0C;&#x4EFB;&#x4F55;&#x4F7F;&#x7528;&#x8BE5;&#x4F1A;&#x8BDD;&#x7684; HTTP &#x8BF7;&#x6C42;&#xFF0C;&#x53EA;&#x8981;&#x5176; URL &#x662F;&#x4EE5;&#x7ED9;&#x5B9A;&#x7684;&#x524D;&#x7F00;&#x5F00;&#x5934;&#xFF0C;&#x8BE5;&#x4F20;&#x8F93;&#x9002;&#x914D;&#x5668;&#x5C31;&#x4F1A;&#x88AB;&#x4F7F;&#x7528;&#x5230;&#x3002;</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<p>&#x4F20;&#x8F93;&#x9002;&#x914D;&#x5668;&#x7684;&#x4F17;&#x591A;&#x5B9E;&#x73B0;&#x7EC6;&#x8282;&#x4E0D;&#x5728;&#x672C;&#x6587;&#x6863;&#x7684;&#x8986;&#x76D6;&#x8303;&#x56F4;&#x5185;&#xFF0C;&#x4E0D;&#x8FC7;&#x53EF;&#x4EE5;&#x770B;&#x770B;&#x63A5;&#x4E0B;&#x6765;&#x8FD9;&#x4E2A;&#x7B80;&#x5355;&#x7684; SSL &#x7528;&#x4F8B;&#x3002;&#x66F4;&#x591A;&#x7684;&#x7528;&#x6CD5;&#xFF0C;&#x4E5F;&#x8BB8;&#x8BE5;&#x8003;&#x8651;&#x4E3A; <a href="http://cn.python-requests.org/zh_CN/latest/api.html#requests.adapters.BaseAdapter" target="_blank">BaseAdapter</a> &#x521B;&#x5EFA;&#x5B50;&#x7C7B;&#x3002;</p>
+<pre><code class="lang-python"><span class="hljs-meta">&gt;&gt;&gt; </span>s = requests.Session()
+<span class="hljs-meta">&gt;&gt;&gt; </span>s.mount(<span class="hljs-string">&apos;http://www.github.com&apos;</span>, MyAdapter())
+</code></pre>
+<p>&#x8FD9;&#x4E2A; mount &#x8C03;&#x7528;&#x4F1A;&#x6CE8;&#x518C;&#x4E00;&#x4E2A;&#x4F20;&#x8F93;&#x9002;&#x914D;&#x5668;&#x7684;&#x7279;&#x5B9A;&#x5B9E;&#x4F8B;&#x5230;&#x4E00;&#x4E2A;&#x524D;&#x7F00;&#x4E0A;&#x9762;&#x3002;&#x52A0;&#x8F7D;&#x4EE5;&#x540E;&#xFF0C;&#x4EFB;&#x4F55;&#x4F7F;&#x7528;&#x8BE5;&#x4F1A;&#x8BDD;&#x7684; HTTP &#x8BF7;&#x6C42;&#xFF0C;&#x53EA;&#x8981;&#x5176; URL &#x662F;&#x4EE5;&#x7ED9;&#x5B9A;&#x7684;&#x524D;&#x7F00;&#x5F00;&#x5934;&#xFF0C;&#x8BE5;&#x4F20;&#x8F93;&#x9002;&#x914D;&#x5668;&#x5C31;&#x4F1A;&#x88AB;&#x4F7F;&#x7528;&#x5230;&#x3002;</p>
+<p>&#x4F20;&#x8F93;&#x9002;&#x914D;&#x5668;&#x7684;&#x4F17;&#x591A;&#x5B9E;&#x73B0;&#x7EC6;&#x8282;&#x4E0D;&#x5728;&#x672C;&#x6587;&#x6863;&#x7684;&#x8986;&#x76D6;&#x8303;&#x56F4;&#x5185;&#xFF0C;&#x4E0D;&#x8FC7;&#x53EF;&#x4EE5;&#x770B;&#x770B;&#x63A5;&#x4E0B;&#x6765;&#x8FD9;&#x4E2A;&#x7B80;&#x5355;&#x7684; SSL &#x7528;&#x4F8B;&#x3002;&#x66F4;&#x591A;&#x7684;&#x7528;&#x6CD5;&#xFF0C;&#x4E5F;&#x8BB8;&#x8BE5;&#x8003;&#x8651;&#x4E3A;<a href="http://cn.python-requests.org/zh_CN/latest/api.html#requests.adapters.BaseAdapter" target="_blank">BaseAdapter</a>&#x521B;&#x5EFA;&#x5B50;&#x7C7B;&#x3002;</p>
 <h3 id="&#x793A;&#x4F8B;-&#x6307;&#x5B9A;&#x7684;-ssl-&#x7248;&#x672C;">&#x793A;&#x4F8B;: &#x6307;&#x5B9A;&#x7684; SSL &#x7248;&#x672C;</h3>
-<p>Requests &#x5F00;&#x53D1;&#x56E2;&#x961F;&#x523B;&#x610F;&#x6307;&#x5B9A;&#x4E86;&#x5185;&#x90E8;&#x5E93;&#xFF08;<a href="https://github.com/shazow/urllib3" target="_blank">urllib3</a>&#xFF09;&#x7684;&#x9ED8;&#x8BA4; SSL &#x7248;&#x672C;&#x3002;&#x4E00;&#x822C;&#x60C5;&#x51B5;&#x4E0B;&#x8FD9;&#x6837;&#x505A;&#x6CA1;&#x6709;&#x95EE;&#x9898;&#xFF0C;&#x4E0D;&#x8FC7;&#x662F;&#x4E0D;&#x662F;&#x53EF;&#x80FD;&#x4F1A;&#x9700;&#x8981;&#x8FDE;&#x63A5;&#x5230;&#x4E00;&#x4E2A;&#x670D;&#x52A1;&#x8282;&#x70B9;&#xFF0C;&#x800C;&#x8BE5;&#x8282;&#x70B9;&#x4F7F;&#x7528;&#x4E86;&#x548C;&#x9ED8;&#x8BA4;&#x4E0D;&#x540C;&#x7684; SSL &#x7248;&#x672C;&#x3002;</p>
+<p>Requests &#x5F00;&#x53D1;&#x56E2;&#x961F;&#x523B;&#x610F;&#x6307;&#x5B9A;&#x4E86;&#x5185;&#x90E8;&#x5E93;&#xFF08;<a href="https://github.com/shazow/urllib3" target="_blank">urllib3</a>&#xFF09;&#x7684;&#x9ED8;&#x8BA4; SSL &#x7248;&#x672C;&#x3002;&#x4E00;&#x822C;&#x60C5;&#x51B5;&#x4E0B;&#x8FD9;&#x6837;&#x505A;&#x6CA1;&#x6709;&#x95EE;&#x9898;&#xFF0C;&#x4E0D;&#x8FC7;&#x53EF;&#x80FD;&#x4F1A;&#x9700;&#x8981;&#x8FDE;&#x63A5;&#x5230;&#x4E00;&#x4E2A;&#x670D;&#x52A1;&#x8282;&#x70B9;&#xFF0C;&#x800C;&#x8BE5;&#x8282;&#x70B9;&#x4F7F;&#x7528;&#x4E86;&#x548C;&#x9ED8;&#x8BA4;&#x4E0D;&#x540C;&#x7684; SSL &#x7248;&#x672C;&#x3002;</p>
 <p>&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x4F20;&#x8F93;&#x9002;&#x914D;&#x5668;&#x89E3;&#x51B3;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#xFF0C;&#x901A;&#x8FC7;&#x5229;&#x7528; HTTPAdapter &#x73B0;&#x6709;&#x7684;&#x5927;&#x90E8;&#x5206;&#x5B9E;&#x73B0;&#xFF0C;&#x518D;&#x52A0;&#x4E0A;&#x4E00;&#x4E2A; ssl_version &#x53C2;&#x6570;&#x5E76;&#x5C06;&#x5B83;&#x4F20;&#x9012;&#x5230; urllib3 &#x4E2D;&#x3002;&#x4F1A;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x4F20;&#x8F93;&#x9002;&#x914D;&#x5668;&#xFF0C;&#x7528;&#x6765;&#x544A;&#x8BC9; urllib3 &#x8BA9;&#x5B83;&#x4F7F;&#x7528; SSLv3&#xFF1A;</p>
-<p>import ssl</p>
-<p>from requests.adapters import HTTPAdapter
-from requests.packages.urllib3.poolmanager import PoolManager</p>
-<p>class Ssl3HttpAdapter(HTTPAdapter):
-    &quot;&quot;&quot;&quot;Transport adapter&quot; that allows us to use SSLv3.&quot;&quot;&quot;</p>
-<pre><code>def init_poolmanager(self, connections, maxsize, block=False):
-    self.poolmanager = PoolManager(num_pools=connections,
-                                   maxsize=maxsize,
-                                   block=block,
-                                   ssl_version=ssl.PROTOCOL_SSLv3)
-</code></pre><h3 id="&#x963B;&#x585E;&#x548C;&#x975E;&#x963B;&#x585E;">&#x963B;&#x585E;&#x548C;&#x975E;&#x963B;&#x585E;</h3>
-<p>&#x4F7F;&#x7528;&#x9ED8;&#x8BA4;&#x7684;&#x4F20;&#x8F93;&#x9002;&#x914D;&#x5668;&#xFF0C;Requests &#x4E0D;&#x63D0;&#x4F9B;&#x4EFB;&#x4F55;&#x5F62;&#x5F0F;&#x7684;&#x975E;&#x963B;&#x585E; IO&#x3002; <a href="http://cn.python-requests.org/zh_CN/latest/api.html#requests.Response.content" target="_blank">Response.content</a> &#x5C5E;&#x6027;&#x4F1A;&#x963B;&#x585E;&#xFF0C;&#x76F4;&#x5230;&#x6574;&#x4E2A;&#x54CD;&#x5E94;&#x4E0B;&#x8F7D;&#x5B8C;&#x6210;&#x3002;&#x5982;&#x679C;&#x9700;&#x8981;&#x66F4;&#x591A;&#x7CBE;&#x7EC6;&#x63A7;&#x5236;&#xFF0C;&#x8BE5;&#x5E93;&#x7684;&#x6570;&#x636E;&#x6D41;&#x529F;&#x80FD;&#xFF08;&#x89C1; <a href="#&#x6D41;&#x5F0F;&#x8BF7;&#x6C42;">&#x6D41;&#x5F0F;&#x8BF7;&#x6C42;</a>&#xFF09; &#x5141;&#x8BB8;&#x6BCF;&#x6B21;&#x63A5;&#x53D7;&#x5C11;&#x91CF;&#x7684;&#x4E00;&#x90E8;&#x5206;&#x54CD;&#x5E94;&#xFF0C;&#x4E0D;&#x8FC7;&#x8FD9;&#x4E9B;&#x8C03;&#x7528;&#x4F9D;&#x7136;&#x662F;&#x963B;&#x585E;&#x5F0F;&#x7684;&#x3002;</p>
-<p>&#x5982;&#x679C;&#x5BF9;&#x4E8E;&#x963B;&#x585E;&#x5F0F; IO &#x6709;&#x6240;&#x987E;&#x8651;&#xFF0C;&#x8FD8;&#x6709;&#x5F88;&#x591A;&#x9879;&#x76EE;&#x53EF;&#x4EE5;&#x4F9B;&#x4F7F;&#x7528;&#xFF0C;&#x5B83;&#x4EEC;&#x7ED3;&#x5408;&#x4E86; Requests &#x548C; Python &#x7684;&#x67D0;&#x4E2A;&#x5F02;&#x6B65;&#x6846;&#x67B6;&#x3002;&#x5178;&#x578B;&#x7684;&#x4F18;&#x79C0;&#x4F8B;&#x5B50;&#x662F; <a href="https://github.com/kennethreitz/grequests" target="_blank">grequests</a> &#x548C; <a href="https://github.com/ross/requests-futures" target="_blank">requests-futures</a>&#x3002;</p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> ssl
+
+<span class="hljs-keyword">from</span> requests.adapters <span class="hljs-keyword">import</span> HTTPAdapter
+<span class="hljs-keyword">from</span> requests.packages.urllib3.poolmanager <span class="hljs-keyword">import</span> PoolManager
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Ssl3HttpAdapter</span><span class="hljs-params">(HTTPAdapter)</span>:</span>
+    <span class="hljs-string">&quot;&quot;&quot;&quot;Transport adapter&quot; that allows us to use SSLv3.&quot;&quot;&quot;</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">init_poolmanager</span><span class="hljs-params">(self, connections, maxsize, block=False)</span>:</span>
+        self.poolmanager = PoolManager(num_pools=connections,
+                                       maxsize=maxsize,
+                                       block=block,
+                                       ssl_version=ssl.PROTOCOL_SSLv3)
+</code></pre>
+<h3 id="&#x963B;&#x585E;&#x548C;&#x975E;&#x963B;&#x585E;">&#x963B;&#x585E;&#x548C;&#x975E;&#x963B;&#x585E;</h3>
+<p>&#x4F7F;&#x7528;&#x9ED8;&#x8BA4;&#x7684;&#x4F20;&#x8F93;&#x9002;&#x914D;&#x5668;&#xFF0C;Requests&#x4E0D;&#x63D0;&#x4F9B;&#x4EFB;&#x4F55;&#x5F62;&#x5F0F;&#x7684;&#x975E;&#x963B;&#x585E; IO&#x3002;<a href="http://cn.python-requests.org/zh_CN/latest/api.html#requests.Response.content" target="_blank">Response.content</a>&#x5C5E;&#x6027;&#x4F1A;&#x963B;&#x585E;&#xFF0C;&#x76F4;&#x5230;&#x6574;&#x4E2A;&#x54CD;&#x5E94;&#x4E0B;&#x8F7D;&#x5B8C;&#x6210;&#x3002;&#x5982;&#x679C;&#x9700;&#x8981;&#x66F4;&#x591A;&#x7CBE;&#x7EC6;&#x63A7;&#x5236;&#xFF0C;&#x8BE5;&#x5E93;&#x7684;&#x6570;&#x636E;&#x6D41;&#x529F;&#x80FD;&#xFF08;&#x89C1;<a href="#&#x6D41;&#x5F0F;&#x8BF7;&#x6C42;">&#x6D41;&#x5F0F;&#x8BF7;&#x6C42;</a>&#xFF09; &#x5141;&#x8BB8;&#x6BCF;&#x6B21;&#x63A5;&#x53D7;&#x5C11;&#x91CF;&#x7684;&#x4E00;&#x90E8;&#x5206;&#x54CD;&#x5E94;&#xFF0C;&#x4E0D;&#x8FC7;&#x8FD9;&#x4E9B;&#x8C03;&#x7528;&#x4F9D;&#x7136;&#x662F;&#x963B;&#x585E;&#x5F0F;&#x7684;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x5BF9;&#x4E8E;&#x963B;&#x585E;&#x5F0F; IO &#x6709;&#x6240;&#x987E;&#x8651;&#xFF0C;&#x8FD8;&#x6709;&#x5F88;&#x591A;&#x9879;&#x76EE;&#x53EF;&#x4EE5;&#x4F9B;&#x4F7F;&#x7528;&#xFF0C;&#x5B83;&#x4EEC;&#x7ED3;&#x5408;&#x4E86; Requests &#x548C; Python &#x7684;&#x67D0;&#x4E2A;&#x5F02;&#x6B65;&#x6846;&#x67B6;&#x3002;&#x5178;&#x578B;&#x7684;&#x4F18;&#x79C0;&#x4F8B;&#x5B50;&#x662F;<a href="https://github.com/kennethreitz/grequests" target="_blank">grequests</a> &#x548C; <a href="https://github.com/ross/requests-futures" target="_blank">requests-futures</a>&#x3002;</p>
 <h3 id="header-&#x6392;&#x5E8F;">Header &#x6392;&#x5E8F;</h3>
-<p>&#x5728;&#x67D0;&#x4E9B;&#x7279;&#x6B8A;&#x60C5;&#x51B5;&#x4E0B;&#x4E5F;&#x8BB8;&#x9700;&#x8981;&#x6309;&#x7167;&#x6B21;&#x5E8F;&#x6765;&#x63D0;&#x4F9B; header&#xFF0C;&#x5982;&#x679C;&#x5411; headers &#x5173;&#x952E;&#x5B57;&#x53C2;&#x6570;&#x4F20;&#x5165;&#x4E00;&#x4E2A; OrderedDict&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x5411;&#x63D0;&#x4F9B;&#x4E00;&#x4E2A;&#x5E26;&#x6392;&#x5E8F;&#x7684; header&#x3002;&#x7136;&#x800C;&#xFF0C;Requests &#x4F7F;&#x7528;&#x7684;&#x9ED8;&#x8BA4; header &#x7684;&#x6B21;&#x5E8F;&#x4F1A;&#x88AB;&#x4F18;&#x5148;&#x9009;&#x62E9;&#xFF0C;&#x8FD9;&#x610F;&#x5473;&#x7740;&#x5982;&#x679C;&#x5728; headers &#x5173;&#x952E;&#x5B57;&#x53C2;&#x6570;&#x4E2D;&#x8986;&#x76D6;&#x4E86;&#x9ED8;&#x8BA4; header&#xFF0C;&#x548C;&#x5173;&#x952E;&#x5B57;&#x53C2;&#x6570;&#x4E2D;&#x522B;&#x7684; header &#x76F8;&#x6BD4;&#xFF0C;&#x5B83;&#x4EEC;&#x4E5F;&#x8BB8;&#x770B;&#x4E0A;&#x53BB;&#x4F1A;&#x662F;&#x6B21;&#x5E8F;&#x9519;&#x8BEF;&#x7684;&#x3002;</p>
-<p>&#x5982;&#x679C;&#x8FD9;&#x4E2A;&#x5BF9;&#x6765;&#x8BF4;&#x662F;&#x4E2A;&#x95EE;&#x9898;&#xFF0C;&#x90A3;&#x4E48;&#x7528;&#x6237;&#x5E94;&#x8BE5;&#x8003;&#x8651;&#x5728; <a href="http://cn.python-requests.org/zh_CN/latest/api.html#requests.Session" target="_blank">Session</a> &#x5BF9;&#x8C61;&#x4E0A;&#x9762;&#x8BBE;&#x7F6E;&#x9ED8;&#x8BA4; header&#xFF0C;&#x53EA;&#x8981;&#x5C06; <a href="http://cn.python-requests.org/zh_CN/latest/api.html#requests.Session.headers" target="_blank">Session</a> &#x8BBE;&#x4E3A;&#x4E00;&#x4E2A;&#x5B9A;&#x5236;&#x7684; OrderedDict &#x5373;&#x53EF;&#x3002;&#x8FD9;&#x6837;&#x5C31;&#x4F1A;&#x8BA9;&#x5B83;&#x6210;&#x4E3A;&#x4F18;&#x9009;&#x7684;&#x6B21;&#x5E8F;&#x3002;</p>
+<p>&#x5728;&#x67D0;&#x4E9B;&#x7279;&#x6B8A;&#x60C5;&#x51B5;&#x4E0B;&#x4E5F;&#x8BB8;&#x9700;&#x8981;&#x6309;&#x7167;&#x6B21;&#x5E8F;&#x6765;&#x63D0;&#x4F9B;header&#xFF0C;&#x5982;&#x679C;&#x5411; headers &#x5173;&#x952E;&#x5B57;&#x53C2;&#x6570;&#x4F20;&#x5165;&#x4E00;&#x4E2A; OrderedDict&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x63D0;&#x4F9B;&#x4E00;&#x4E2A;&#x5E26;&#x6392;&#x5E8F;&#x7684; header&#x3002;&#x7136;&#x800C;&#xFF0C;Requests &#x4F7F;&#x7528;&#x7684;&#x9ED8;&#x8BA4; header &#x7684;&#x6B21;&#x5E8F;&#x4F1A;&#x88AB;&#x4F18;&#x5148;&#x9009;&#x62E9;&#xFF0C;&#x8FD9;&#x610F;&#x5473;&#x7740;&#x5982;&#x679C;&#x5728; headers &#x5173;&#x952E;&#x5B57;&#x53C2;&#x6570;&#x4E2D;&#x8986;&#x76D6;&#x4E86;&#x9ED8;&#x8BA4; header&#xFF0C;&#x548C;&#x5173;&#x952E;&#x5B57;&#x53C2;&#x6570;&#x4E2D;&#x522B;&#x7684; header &#x76F8;&#x6BD4;&#xFF0C;&#x5B83;&#x4EEC;&#x4E5F;&#x8BB8;&#x770B;&#x4E0A;&#x53BB;&#x4F1A;&#x662F;&#x6B21;&#x5E8F;&#x9519;&#x8BEF;&#x7684;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x8FD9;&#x662F;&#x4E2A;&#x95EE;&#x9898;&#xFF0C;&#x90A3;&#x4E48;&#x7528;&#x6237;&#x5E94;&#x8BE5;&#x8003;&#x8651;&#x5728;<a href="http://cn.python-requests.org/zh_CN/latest/api.html#requests.Session" target="_blank">Session</a> &#x5BF9;&#x8C61;&#x4E0A;&#x9762;&#x8BBE;&#x7F6E;&#x9ED8;&#x8BA4; header&#xFF0C;&#x53EA;&#x8981;&#x5C06; <a href="http://cn.python-requests.org/zh_CN/latest/api.html#requests.Session.headers" target="_blank">Session</a> &#x8BBE;&#x4E3A;&#x4E00;&#x4E2A;&#x5B9A;&#x5236;&#x7684; OrderedDict &#x5373;&#x53EF;&#x3002;&#x8FD9;&#x6837;&#x5C31;&#x4F1A;&#x8BA9;&#x5B83;&#x6210;&#x4E3A;&#x4F18;&#x9009;&#x7684;&#x6B21;&#x5E8F;&#x3002;</p>
 <h3 id="&#x8D85;&#x65F6;&#xFF08;timeout&#xFF09;">&#x8D85;&#x65F6;&#xFF08;timeout&#xFF09;</h3>
-<p>&#x4E3A;&#x9632;&#x6B62;&#x670D;&#x52A1;&#x5668;&#x4E0D;&#x80FD;&#x53CA;&#x65F6;&#x54CD;&#x5E94;&#xFF0C;&#x5927;&#x90E8;&#x5206;&#x53D1;&#x81F3;&#x5916;&#x90E8;&#x670D;&#x52A1;&#x5668;&#x7684;&#x8BF7;&#x6C42;&#x90FD;&#x5E94;&#x8BE5;&#x5E26;&#x7740; timeout &#x53C2;&#x6570;&#x3002;&#x5728;&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x9664;&#x975E;&#x663E;&#x5F0F;&#x6307;&#x5B9A;&#x4E86; timeout &#x503C;&#xFF0C;requests &#x662F;&#x4E0D;&#x4F1A;&#x81EA;&#x52A8;&#x8FDB;&#x884C;&#x8D85;&#x65F6;&#x5904;&#x7406;&#x7684;&#x3002;&#x5982;&#x679C;&#x6CA1;&#x6709; timeout&#xFF0C;&#x7684;&#x4EE3;&#x7801;&#x53EF;&#x80FD;&#x4F1A;&#x6302;&#x8D77;&#x82E5;&#x5E72;&#x5206;&#x949F;&#x751A;&#x81F3;&#x66F4;&#x957F;&#x65F6;&#x95F4;&#x3002;</p>
+<p>&#x4E3A;&#x9632;&#x6B62;&#x670D;&#x52A1;&#x5668;&#x4E0D;&#x80FD;&#x53CA;&#x65F6;&#x54CD;&#x5E94;&#xFF0C;&#x5927;&#x90E8;&#x5206;&#x53D1;&#x81F3;&#x5916;&#x90E8;&#x670D;&#x52A1;&#x5668;&#x7684;&#x8BF7;&#x6C42;&#x90FD;&#x5E94;&#x8BE5;&#x5E26;&#x7740;timeout&#x53C2;&#x6570;&#x3002;&#x5728;&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x9664;&#x975E;&#x663E;&#x5F0F;&#x6307;&#x5B9A;&#x4E86;timeout&#x503C;&#xFF0C;requests&#x662F;&#x4E0D;&#x4F1A;&#x81EA;&#x52A8;&#x8FDB;&#x884C;&#x8D85;&#x65F6;&#x5904;&#x7406;&#x7684;&#x3002;&#x5982;&#x679C;&#x6CA1;&#x6709;timeout&#xFF0C;&#x4EE3;&#x7801;&#x53EF;&#x80FD;&#x4F1A;&#x6302;&#x8D77;&#x82E5;&#x5E72;&#x5206;&#x949F;&#x751A;&#x81F3;&#x66F4;&#x957F;&#x65F6;&#x95F4;&#x3002;</p>
 <p>&#x8FDE;&#x63A5;&#x8D85;&#x65F6;&#x6307;&#x7684;&#x662F;&#x5728;&#x7684;&#x5BA2;&#x6237;&#x7AEF;&#x5B9E;&#x73B0;&#x5230;&#x8FDC;&#x7AEF;&#x673A;&#x5668;&#x7AEF;&#x53E3;&#x7684;&#x8FDE;&#x63A5;&#x65F6;&#xFF08;&#x5BF9;&#x5E94;&#x7684;&#x662F;<code>connect()</code>_&#xFF09;&#xFF0C;Request &#x4F1A;&#x7B49;&#x5F85;&#x7684;&#x79D2;&#x6570;&#x3002;&#x4E00;&#x4E2A;&#x5F88;&#x597D;&#x7684;&#x5B9E;&#x8DF5;&#x65B9;&#x6CD5;&#x662F;&#x628A;&#x8FDE;&#x63A5;&#x8D85;&#x65F6;&#x8BBE;&#x4E3A;&#x6BD4; 3 &#x7684;&#x500D;&#x6570;&#x7565;&#x5927;&#x7684;&#x4E00;&#x4E2A;&#x6570;&#x503C;&#xFF0C;&#x56E0;&#x4E3A; <a href="http://www.hjp.at/doc/rfc/rfc2988.txt" target="_blank">TCP &#x6570;&#x636E;&#x5305;&#x91CD;&#x4F20;&#x7A97;&#x53E3; (TCP packet retransmission window)</a> &#x7684;&#x9ED8;&#x8BA4;&#x5927;&#x5C0F;&#x662F; 3&#x3002;</p>
 <p>&#x4E00;&#x65E6;&#x7684;&#x5BA2;&#x6237;&#x7AEF;&#x8FDE;&#x63A5;&#x5230;&#x4E86;&#x670D;&#x52A1;&#x5668;&#x5E76;&#x4E14;&#x53D1;&#x9001;&#x4E86; HTTP &#x8BF7;&#x6C42;&#xFF0C;&#x8BFB;&#x53D6;&#x8D85;&#x65F6;&#x6307;&#x7684;&#x5C31;&#x662F;&#x5BA2;&#x6237;&#x7AEF;&#x7B49;&#x5F85;&#x670D;&#x52A1;&#x5668;&#x53D1;&#x9001;&#x8BF7;&#x6C42;&#x7684;&#x65F6;&#x95F4;&#x3002;&#xFF08;&#x7279;&#x5B9A;&#x5730;&#xFF0C;&#x5B83;&#x6307;&#x7684;&#x662F;&#x5BA2;&#x6237;&#x7AEF;&#x8981;&#x7B49;&#x5F85;&#x670D;&#x52A1;&#x5668;&#x53D1;&#x9001;&#x5B57;&#x8282;&#x4E4B;&#x95F4;&#x7684;&#x65F6;&#x95F4;&#x3002;&#x5728; 99.9% &#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x8FD9;&#x6307;&#x7684;&#x662F;&#x670D;&#x52A1;&#x5668;&#x53D1;&#x9001;&#x7B2C;&#x4E00;&#x4E2A;&#x5B57;&#x8282;&#x4E4B;&#x524D;&#x7684;&#x65F6;&#x95F4;&#xFF09;&#x3002;</p>
 <p>&#x5982;&#x679C;&#x5236;&#x8BA2;&#x4E86;&#x4E00;&#x4E2A;&#x5355;&#x4E00;&#x7684;&#x503C;&#x4F5C;&#x4E3A; timeout&#xFF0C;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF1A;</p>
-<p>r = requests.get(&apos;<a href="https://github.com" target="_blank">https://github.com</a>&apos;, timeout=5)
-&#x8FD9;&#x4E00; timeout &#x503C;&#x5C06;&#x4F1A;&#x7528;&#x4F5C; connect &#x548C; read &#x4E8C;&#x8005;&#x7684; timeout&#x3002;&#x5982;&#x679C;&#x8981;&#x5206;&#x522B;&#x5236;&#x5B9A;&#xFF0C;&#x5C31;&#x4F20;&#x5165;&#x4E00;&#x4E2A;&#x5143;&#x7EC4;&#xFF1A;</p>
-<p>r = requests.get(&apos;<a href="https://github.com" target="_blank">https://github.com</a>&apos;, timeout=(3.05, 27))
-&#x5982;&#x679C;&#x8FDC;&#x7AEF;&#x670D;&#x52A1;&#x5668;&#x5F88;&#x6162;&#xFF0C;&#x53EF;&#x4EE5;&#x8BA9; Request &#x6C38;&#x8FDC;&#x7B49;&#x5F85;&#xFF0C;&#x4F20;&#x5165;&#x4E00;&#x4E2A; None &#x4F5C;&#x4E3A; timeout &#x503C;&#xFF0C;&#x7136;&#x540E;&#x5C31;&#x51B2;&#x5496;&#x5561;&#x53BB;&#x5427;&#x3002;</p>
-<p>r = requests.get(&apos;<a href="https://github.com" target="_blank">https://github.com</a>&apos;, timeout=None)</p>
+<pre><code class="lang-python">r = requests.get(<span class="hljs-string">&apos;https://github.com&apos;</span>, timeout=<span class="hljs-number">5</span>)
+</code></pre>
+<p>&#x8FD9;&#x4E00; timeout &#x503C;&#x5C06;&#x4F1A;&#x7528;&#x4F5C; connect &#x548C; read &#x4E8C;&#x8005;&#x7684; timeout&#x3002;&#x5982;&#x679C;&#x8981;&#x5206;&#x522B;&#x5236;&#x5B9A;&#xFF0C;&#x5C31;&#x4F20;&#x5165;&#x4E00;&#x4E2A;&#x5143;&#x7EC4;&#xFF1A;</p>
+<pre><code class="lang-python">r = requests.get(<span class="hljs-string">&apos;https://github.com&apos;</span>, timeout=(<span class="hljs-number">3.05</span>, <span class="hljs-number">27</span>))
+</code></pre>
+<p>&#x5982;&#x679C;&#x8FDC;&#x7AEF;&#x670D;&#x52A1;&#x5668;&#x5F88;&#x6162;&#xFF0C;&#x53EF;&#x4EE5;&#x8BA9; Request &#x6C38;&#x8FDC;&#x7B49;&#x5F85;&#xFF0C;&#x4F20;&#x5165;&#x4E00;&#x4E2A; None &#x4F5C;&#x4E3A; timeout &#x503C;&#xFF0C;&#x7136;&#x540E;&#x5C31;&#x51B2;&#x5496;&#x5561;&#x53BB;&#x5427;&#x3002;</p>
+<pre><code class="lang-python">r = requests.get(<span class="hljs-string">&apos;https://github.com&apos;</span>, timeout=<span class="hljs-keyword">None</span>)
+</code></pre>
 
                                 
                                 </section>
@@ -1435,7 +1440,7 @@ from requests.packages.urllib3.poolmanager import PoolManager</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Requests","level":"1.7.1","depth":2,"next":{"title":"Pillow","level":"1.7.2","depth":2,"path":"module/Pillow.md","ref":"module/Pillow.md","articles":[]},"previous":{"title":"三方模块","level":"1.7","depth":1,"path":"module/README.md","ref":"module/README.md","articles":[{"title":"Requests","level":"1.7.1","depth":2,"path":"module/Requests.md","ref":"module/Requests.md","articles":[]},{"title":"Pillow","level":"1.7.2","depth":2,"path":"module/Pillow.md","ref":"module/Pillow.md","articles":[]},{"title":"optparse","level":"1.7.3","depth":2,"path":"module/optparse.md","ref":"module/optparse.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"module/Requests.md","mtime":"2019-05-03T15:55:56.968Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-05-03T15:56:44.971Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Requests","level":"1.7.1","depth":2,"next":{"title":"Pillow","level":"1.7.2","depth":2,"path":"module/Pillow.md","ref":"module/Pillow.md","articles":[]},"previous":{"title":"三方模块","level":"1.7","depth":1,"path":"module/README.md","ref":"module/README.md","articles":[{"title":"Requests","level":"1.7.1","depth":2,"path":"module/Requests.md","ref":"module/Requests.md","articles":[]},{"title":"Pillow","level":"1.7.2","depth":2,"path":"module/Pillow.md","ref":"module/Pillow.md","articles":[]},{"title":"optparse","level":"1.7.3","depth":2,"path":"module/optparse.md","ref":"module/optparse.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"module/Requests.md","mtime":"2019-05-06T16:25:06.152Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-05-06T16:25:16.379Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
